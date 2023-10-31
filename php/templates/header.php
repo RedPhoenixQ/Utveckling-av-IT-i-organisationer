@@ -34,8 +34,11 @@ require_once __DIR__ . "/../scripts/db.php";
                         "Boka tid" => "/bokatid",
                     ];
                     foreach( $links as $title => $link ) {
+                        $is_current = str_starts_with($_SERVER["REQUEST_URI"], $path);
+                        $active = $is_current ? "active" : "";
+                        $ariacurrent = $is_current ? "aria-current='page'" : "";
                         echo "<li class='nav-item'>";
-                        echo "<a class='nav-link' href='$base_url$link'>$title</a>";
+                        echo "<a class='nav-link $active' href='$base_url$link' $ariacurrent>$title</a>";
                         echo "</li>";
                     }
                     ?>
