@@ -13,7 +13,7 @@ require_once __DIR__ . "/../scripts/db.php";
     <script src="<?= $base_url ?>/static/htmx.min.js"></script>
     <title><?= $title ?? "Hem" ?></title>
 </head>
-<body>
+<body hx-boost="true">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light mx-4">
             <a class="navbar-brand" href="<?= $base_url ?>">Mölndals Vårdcentral</a>
