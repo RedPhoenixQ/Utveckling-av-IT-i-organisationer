@@ -11,4 +11,7 @@ function str_ends_with( $haystack, $needle ) {
    }
    return substr( $haystack, -$length ) === $needle;
 }
+function str_contains( $haystack, $needle ) {
+    return ( strpos( $haystack, $needle ) !== false );
+}
 ?>
