@@ -15,7 +15,8 @@ require_once __DIR__ . "/../scripts/db.php";
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mx-4">
+            <a class="navbar-brand" href="<?= $base_url ?>">Mölndals Vårdcentral</a>
             <button class="navbar-toggler" type="button" 
             data-bs-toggle="collapse" 
             data-bs-target="#headerNavbar"
@@ -26,7 +27,7 @@ require_once __DIR__ . "/../scripts/db.php";
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="headerNavbar">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav text-end text-lg-start">
                     <?php 
                     $links = [
                         "Mina sidor" => "/minasidor",
