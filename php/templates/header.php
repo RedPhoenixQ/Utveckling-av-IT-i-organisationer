@@ -4,7 +4,7 @@ require_once __DIR__ . "/../scripts/session.php";
 require_once __DIR__ . "/../scripts/db.php";
 ?>
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="sv" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@ require_once __DIR__ . "/../scripts/db.php";
 </head>
 <body hx-boost="true">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mx-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark mx-4">
             <a class="navbar-brand" href="<?= $base_url ?>">Mölndals Vårdcentral</a>
             <button class="navbar-toggler" type="button" 
             data-bs-toggle="collapse" 
