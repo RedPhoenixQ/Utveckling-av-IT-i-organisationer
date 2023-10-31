@@ -27,12 +27,17 @@ require_once __DIR__ . "/../scripts/db.php";
             </button>
             <div class="collapse navbar-collapse" id="headerNavbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mina sidor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Boka tid</a>
-                    </li>
+                    <?php 
+                    $links = [
+                        "Mina sidor" => "/minasidor",
+                        "Boka tid" => "/bokatid",
+                    ];
+                    foreach( $links as $title => $link ) {
+                        echo "<li class='nav-item'>";
+                        echo "<a class='nav-link' href='$base_url$link'>$title</a>";
+                        echo "</li>";
+                    }
+                    ?>
                 </ul>
             </div>
         </nav>
