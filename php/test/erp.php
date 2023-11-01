@@ -3,8 +3,11 @@
 
 <main>
     <h1>Erp test</h1>
-    <?php 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    <?php
+    if (isset($_POST["delete_name"])) {
+        $erp = new Erp("Patient");
+        var_dump($erp->delete($_POST["delete_name"]));
+    } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erp = new Erp("Patient");
         print_r($_POST);
         var_dump($erp->create($_POST));
@@ -21,6 +24,11 @@
         <label for="uid">SSN</label>
         <input type="text" name="uid" id="uid">
         <button>Create Patient</button>
+    </form>
+    <form action="" method="POST">
+        <label for="delete_name">Patient name</label>
+        <input type="text" name="delete_name" id="delete_name">
+        <button>Delete Patient</button>
     </form>
     <details>
         <summary>Users</summary>
