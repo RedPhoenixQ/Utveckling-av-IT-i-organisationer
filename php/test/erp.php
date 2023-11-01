@@ -3,6 +3,25 @@
 
 <main>
     <h1>Erp test</h1>
+    <?php 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $erp = new Erp("Patient");
+        print_r($_POST);
+        var_dump($erp->create($_POST));
+    }
+    ?>
+    <form action="" method="post">
+        <label for="first_name">First name</label>
+        <input type="text" name="first_name" id="first_name">
+        <label for="sex">Gender</label>
+        <select type="text" name="sex" id="sex">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <label for="uid">SSN</label>
+        <input type="text" name="uid" id="uid">
+        <button>Create Patient</button>
+    </form>
     <details>
         <summary>Users</summary>
         <pre><?php
