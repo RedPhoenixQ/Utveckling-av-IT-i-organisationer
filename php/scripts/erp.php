@@ -77,5 +77,12 @@ class Erp {
         $ch = self::start_json_req();
         return self::finish_json_req($ch);
     }
+
+    public function create(array $data): ?object {
+        $ch = self::start_json_req();
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        return self::finish_json_req($ch);
+    }
 }
 ?>
