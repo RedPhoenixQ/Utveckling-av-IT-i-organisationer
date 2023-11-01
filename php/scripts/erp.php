@@ -20,7 +20,7 @@ class Erp {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         return $ch;
     }
-    static private function finish_json_req($ch): Object {
+    static private function finish_json_req($ch): ?Object {
         $response = curl_exec($ch);
         $response = json_decode($response);
 
@@ -31,7 +31,7 @@ class Erp {
         return $response;
     }
 
-    static public function GET(string $path): Object {
+    static public function GET(string $path): ?Object {
         $ch = self::start_json_req($path);
         return self::finish_json_req($ch);
     }
