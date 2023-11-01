@@ -30,8 +30,8 @@ require_once __DIR__ . "/../scripts/db.php";
                 <ul class="navbar-nav text-end text-lg-start">
                     <?php 
                     $links = [
-                        "Mina sidor" => "/minasidor",
-                        "Boka tid" => "/bokatid",
+                        "Mina sidor" => "minasidor",
+                        "Boka tid" => "bokatid",
                     ];
                     foreach( $links as $title => $link ) {
                         $is_current = str_starts_with($_SERVER["REQUEST_URI"], $base_url . $link);
