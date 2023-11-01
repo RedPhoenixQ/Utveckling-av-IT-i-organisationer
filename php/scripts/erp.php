@@ -5,6 +5,7 @@ class Erp {
     private const BASE_URL = "http://193.93.250.83/api/resource/";
 
     private string $doctype;
+    private string $name;
     private array $filters;
     public array $fields;
     public int $limit_page_length;
@@ -15,13 +16,16 @@ class Erp {
     }
 
     private function generate_url() {
+        $url = self::BASE_URL . $this->doctype;
+        if (!empty($this->name)) {
+            $url .= "/". rawurlencode($this->name);
+        }
         $query = [];
         foreach (["fields", "filters", "limit_page_length", "limit_start"] as $member) {
             if (!empty($this->{$member})) {
                 $query[$member] = json_encode($this->{$member});
             }
         }
-        $url = self::BASE_URL . $this->doctype;
         if (!empty($query)) {
             $url .= "?" . http_build_query($query);
         }
@@ -60,6 +64,12 @@ class Erp {
     }
 
     public function list(): ?object {
+        $ch = self::start_json_req();
+        return self::finish_json_req($ch);
+    }
+
+    public function read(string $name): ?object {
+        $this->name = $name;
         $ch = self::start_json_req();
         return self::finish_json_req($ch);
     }
