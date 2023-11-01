@@ -93,5 +93,13 @@ class Erp
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         return $this->finish_json_req($ch);
     }
+
+    public function delete(string $name): ?object 
+    {
+        $this->name = $name;
+        $ch = $this->start_json_req();
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST,"DELETE");
+        return $this->finish_json_req($ch);
+    }
 }
 ?>
