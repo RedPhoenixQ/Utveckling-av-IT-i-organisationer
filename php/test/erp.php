@@ -7,10 +7,14 @@
     if (isset($_POST["delete_name"])) {
         $erp = new Erp("Patient");
         var_dump($erp->delete($_POST["delete_name"]));
-    } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    } else if (isset($_POST["create"])) {
+        $data = array_filter($_POST);
         $erp = new Erp("Patient");
-        print_r($_POST);
-        var_dump($erp->create($_POST));
+        var_dump($erp->create($data));
+    } else if (isset($_POST["update"])) {
+        $data = array_filter($_POST);
+        $erp = new Erp("Patient");
+        var_dump($erp->update($_POST["name"], $data));
     }
     ?>
     <form action="" method="post">
@@ -23,7 +27,7 @@
         </select>
         <label for="uid">SSN</label>
         <input type="text" name="uid" id="uid">
-        <button>Create Patient</button>
+        <button name="create">Create Patient</button>
     </form>
     <form action="" method="POST">
         <label for="delete_name">Patient name</label>
@@ -39,11 +43,27 @@
     </details>
     <details>
         <summary>Patients</summary>
-        <pre><?php
+        <?php
         $erp = new Erp("Patient");
         $erp->fields = ["name", "uid", "first_name", "sex"];
-        var_dump($erp->list()) 
-        ?></pre>
+        $patients = $erp->list();
+        echo "<ul>";
+        foreach ($patients->data as $patient) {
+            echo "<form method='post' class='text-capitalize'>";
+            foreach ($patient as $key => $value) {
+                if ($key == "name") {
+                    echo "<label for='$key'>$key</label>";
+                    echo "<input readonly value='$value' name='$key' id='$key'>";
+                } else {
+                    echo "<label for='$key'>$key</label>";
+                    echo "<input placeholder='$value' name='$key' id='$key'>";
+                }
+            }
+            echo "<button name='update'>Update</button>";
+            echo "</form>";
+        }
+        echo "</ul>";
+        ?>
     </details>
     <details>
         <summary>Female Patients</summary>
