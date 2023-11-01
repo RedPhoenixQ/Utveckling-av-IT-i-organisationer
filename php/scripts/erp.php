@@ -42,7 +42,6 @@ class Erp {
         } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-        //  ----------  Här sätter ni era login-data ------------------ //
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json', 
             'Accept: application/json',
@@ -52,6 +51,7 @@ class Erp {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         return $ch;
     }
+    
     private function finish_json_req($ch): ?object {
         $response = curl_exec($ch);
         $response = json_decode($response);
