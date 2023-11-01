@@ -1,7 +1,8 @@
 <?php
-class Erp {
+class Erp
+{
     // WARN: Very insecure
-    private const API_KEY =  "124785e69495ab9:e327c50d47bb5dd";
+    private const API_KEY = "124785e69495ab9:e327c50d47bb5dd";
     private const BASE_URL = "http://193.93.250.83/api/resource/";
 
     private string $doctype;
@@ -11,14 +12,16 @@ class Erp {
     public int $limit_page_length;
     public int $limit_start;
 
-    public function __construct(string $doctype) {
+    public function __construct(string $doctype)
+    {
         $this->doctype = $doctype;
     }
 
-    private function generate_url() {
+    private function generate_url()
+    {
         $url = self::BASE_URL . $this->doctype;
         if (!empty($this->name)) {
-            $url .= "/". rawurlencode($this->name);
+            $url .= "/" . rawurlencode($this->name);
         }
         $query = [];
         foreach (["fields", "filters", "limit_page_length", "limit_start"] as $member) {
@@ -36,14 +39,15 @@ class Erp {
         return $url;
     }
 
-    private function start_json_req() {
+    private function start_json_req()
+    {
         try {
-        $ch = curl_init($this->generate_url());
+            $ch = curl_init($this->generate_url());
         } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
+            echo 'Caught exception: ', $e->getMessage(), "\n";
         }
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json', 
+            'Content-Type: application/json',
             'Accept: application/json',
             'Authorization: token ' . self::API_KEY,
         ]);
@@ -51,8 +55,9 @@ class Erp {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         return $ch;
     }
-    
-    private function finish_json_req($ch): ?object {
+
+    private function finish_json_req($ch): ?object
+    {
         $response = curl_exec($ch);
         $response = json_decode($response);
 
@@ -63,26 +68,30 @@ class Erp {
         return $response;
     }
 
-    public function add_filter(array $filter) {
+    public function add_filter(array $filter)
+    {
         $this->filters[] = $filter;
     }
 
-    public function list(): ?object {
-        $ch = self::start_json_req();
-        return self::finish_json_req($ch);
+    public function list(): ?object
+    {
+        $ch = $this->start_json_req();
+        return $this->finish_json_req($ch);
     }
 
-    public function read(string $name): ?object {
+    public function read(string $name): ?object
+    {
         $this->name = $name;
-        $ch = self::start_json_req();
-        return self::finish_json_req($ch);
+        $ch = $this->start_json_req();
+        return $this->finish_json_req($ch);
     }
 
-    public function create(array $data): ?object {
-        $ch = self::start_json_req();
+    public function create(array $data): ?object
+    {
+        $ch = $this->start_json_req();
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        return self::finish_json_req($ch);
+        return $this->finish_json_req($ch);
     }
 }
 ?>
