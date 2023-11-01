@@ -23,7 +23,11 @@ class Erp {
         $query = [];
         foreach (["fields", "filters", "limit_page_length", "limit_start"] as $member) {
             if (!empty($this->{$member})) {
-                $query[$member] = json_encode($this->{$member});
+                if (gettype($this->{$member}) == "array") {
+                    $query[$member] = json_encode($this->{$member});
+                } else {
+                    $query[$member] = $this->{$member};
+                }
             }
         }
         if (!empty($query)) {
