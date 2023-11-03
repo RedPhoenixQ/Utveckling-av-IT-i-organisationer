@@ -12,7 +12,13 @@ CREATE OR REPLACE PROCEDURE verify_auth(ssn CHAR(12), pwd VARCHAR(100))
 BEGIN
 	SET @salt = (SELECT salt FROM auth WHERE auth.ssn = ssn);
 	SET @hash = MD5(CONCAT(pwd, @salt)) COLLATE utf8mb4_unicode_ci;
-	SELECT *, COUNT(*) as "verified" FROM auth WHERE auth.ssn = ssn AND auth.pwd = @hash;
+	SELECT ssn, name FROM auth WHERE auth.ssn = ssn AND auth.pwd = @hash INTO @ssn, @name;
+    IF @ssn IS NULL THEN
+		SIGNAL SQLSTATE "53001"
+			SET MESSAGE_TEXT = "Felaktigt lösenord eller personnummer";
+	ELSE 
+		SELECT @ssn as "ssn", @name as "name";
+	END IF;
 END//
 DELIMITER ;
 
