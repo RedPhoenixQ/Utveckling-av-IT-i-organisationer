@@ -1,7 +1,6 @@
 <?php 
 require_once __DIR__ . "/../scripts/globals.php";
 require_once __DIR__ . "/../scripts/session.php";
-require_once __DIR__ . "/../scripts/db.php";
 ?>
 <!DOCTYPE html>
 <html lang="sv" data-bs-theme="dark">
