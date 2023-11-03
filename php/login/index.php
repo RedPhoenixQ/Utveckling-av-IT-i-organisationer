@@ -16,6 +16,13 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"])) {
             $auth = $stmt->fetch();
             $_SESSION[Session::IS_LOGGED_IN] = true;
             $_SESSION[Session::NAME] = $auth["name"];
+            if (!empty($_GET["redirect"])) {
+                $redirect = $_GET["redirect"];
+            } else {
+                $redirect = $base_url . "/";
+            }
+            header("Location: " . $redirect);
+            die();
         } else {
             $form_error = "Något gick fel, " . $stmt->errorInfo()[2];
         }
