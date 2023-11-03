@@ -56,10 +56,10 @@ class Erp
         return $ch;
     }
 
-    private function finish_json_req($ch): ?object
+    private function finish_json_req($ch): ?array
     {
         $response = curl_exec($ch);
-        $response = json_decode($response);
+        $response = json_decode($response, true);
 
         $error_no = curl_errno($ch);
         $error = curl_error($ch);
@@ -73,20 +73,20 @@ class Erp
         $this->filters[] = $filter;
     }
 
-    public function list(): ?object
+    public function list(): ?array
     {
         $ch = $this->start_json_req();
         return $this->finish_json_req($ch);
     }
 
-    public function read(string $name): ?object
+    public function read(string $name): ?array
     {
         $this->name = $name;
         $ch = $this->start_json_req();
         return $this->finish_json_req($ch);
     }
 
-    public function create(array $data): ?object
+    public function create(array $data): ?array
     {
         $ch = $this->start_json_req();
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -94,7 +94,7 @@ class Erp
         return $this->finish_json_req($ch);
     }
     
-    public function update(string $name, array $data): ?object
+    public function update(string $name, array $data): ?array
     {
         $this->name = $name;
         $ch = $this->start_json_req();
@@ -104,7 +104,7 @@ class Erp
     }
 
 
-    public function delete(string $name): ?object 
+    public function delete(string $name): ?array 
     {
         $this->name = $name;
         $ch = $this->start_json_req();
