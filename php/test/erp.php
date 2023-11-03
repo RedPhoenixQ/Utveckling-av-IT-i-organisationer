@@ -48,7 +48,7 @@
         $erp->fields = ["name", "uid", "first_name", "sex"];
         $patients = $erp->list();
         echo "<ul>";
-        foreach ($patients->data as $patient) {
+        foreach ($patients["data"] as $patient) {
             echo "<form method='post' class='text-capitalize'>";
             foreach ($patient as $key => $value) {
                 if ($key == "name") {
