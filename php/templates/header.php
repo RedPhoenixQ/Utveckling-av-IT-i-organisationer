@@ -37,11 +37,22 @@ require_once __DIR__ . "/../scripts/session.php";
                         $active = $is_current ? "active" : "";
                         $ariacurrent = $is_current ? "aria-current='page'" : "";
                         echo "<li class='nav-item'>";
-                        echo "<a class='nav-link $active' href='$base_url/$link' $ariacurrent>$title</a>";
+                        echo "<a class='nav-link $active' href='$base_url/$link/' $ariacurrent>$title</a>";
                         echo "</li>";
                     }
                     ?>
                 </ul>
+                <div class="ms-auto">
+                    <?php
+                    // Save the current url in query params to redirect back to current page
+                    $query = http_build_query(["redirect" => $_SERVER["REQUEST_URI"]]);
+                    if ($_SESSION[Session::IS_LOGGED_IN]) {
+                        echo "<a class='btn btn-secondary' href='$base_url/logout/?$query'>Logga ut</a>";
+                    } else {
+                        echo "<a class='btn btn-primary' href='$base_url/login/?$query'>Logga in</a>";
+                    }
+                    ?>
+                </div>
             </div>
         </nav>
     </header>
