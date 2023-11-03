@@ -38,7 +38,7 @@ require_once __DIR__ . "/../scripts/db.php";
                         $active = $is_current ? "active" : "";
                         $ariacurrent = $is_current ? "aria-current='page'" : "";
                         echo "<li class='nav-item'>";
-                        echo "<a class='nav-link $active' href='$base_url$link' $ariacurrent>$title</a>";
+                        echo "<a class='nav-link $active' href='$base_url/$link' $ariacurrent>$title</a>";
                         echo "</li>";
                     }
                     ?>
