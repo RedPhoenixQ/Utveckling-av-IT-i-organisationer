@@ -1,3 +1,4 @@
+<?php require_once "../scripts/auth/verify_logged_in.php" ?>
 <?php $title = "Mina Sidor"; require_once "../templates/header.php" ?>
 
 <main>
