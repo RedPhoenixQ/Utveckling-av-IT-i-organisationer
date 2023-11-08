@@ -2,7 +2,7 @@
 class Erp
 {
     // WARN: Very insecure
-    private const API_KEY = "124785e69495ab9:e327c50d47bb5dd";
+    private const API_KEY = "124785e69495ab9:dab98cd889fd670";
     private const BASE_URL = "http://193.93.250.83/api/resource/";
 
     private string $doctype;
