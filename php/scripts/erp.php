@@ -19,7 +19,7 @@ class Erp
 
     private function generate_url()
     {
-        $url = self::BASE_URL . $this->doctype;
+        $url = self::BASE_URL . rawurlencode($this->doctype);
         if (!empty($this->name)) {
             $url .= "/" . rawurlencode($this->name);
         }
