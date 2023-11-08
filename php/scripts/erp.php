@@ -59,11 +59,13 @@ class Erp
     private function finish_json_req($ch): ?array
     {
         $response = curl_exec($ch);
-        $response = json_decode($response, true);
-
-        $error_no = curl_errno($ch);
-        $error = curl_error($ch);
-        echo $error;
+        if ($response === false) {
+            if (curl_errno($ch) !== 0) {
+                $response = ["error" => curl_error($ch)];
+            }
+        } else {
+            $response = json_decode($response, true);
+        }
         curl_close($ch);
         return $response;
     }
