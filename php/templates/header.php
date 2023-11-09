@@ -13,8 +13,8 @@ require_once __DIR__ . "/../scripts/session.php";
     <title><?= $title ?? "Hem" ?></title>
 </head>
 <body hx-boost="true">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark mx-4">
+    <header class="sticky-top bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-light mx-4">
             <a class="navbar-brand" href="<?= $base_url ?>">Mölndals Vårdcentral</a>
             <button class="navbar-toggler" type="button" 
             data-bs-toggle="collapse" 
