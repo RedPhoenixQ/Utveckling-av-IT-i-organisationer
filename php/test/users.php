@@ -14,6 +14,11 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"]) && !empty($_POST["name"])) {
         $stmt->execute();
         var_dump($stmt->errorInfo());
     }
+} else if (isset($_POST["delete"]) && !empty($_POST["ssn"])) {
+    $stmt = $db->prepare("DELETE FROM auth WHERE ssn = :ssn");
+    $stmt->bindParam("ssn", $_POST["ssn"], PDO::PARAM_INT);
+    $stmt->execute();
+    var_dump($stmt->errorInfo());
 }
 ?>
 
