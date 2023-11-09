@@ -1,8 +1,8 @@
 <?php require_once "../../scripts/auth/verify_logged_in.php" ?>
-<?php $title = "Mina Sidor"; require_once "../../templates/header.php" ?>
+<?php $title = "Sök vård"; require_once "../../templates/header.php" ?>
 
 <main class="container-sm">
-    <h1>Boka tid</h1>
+    <h1>Sök vård</h1>
     <p>Du kommer få ett svar med er bokade tid på TODO(HUR KONTAKTAR VI PATIENT)</p>
     <form action="hantera_bokning.php" method="post">
         <div class="my-2">
