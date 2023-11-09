@@ -35,9 +35,7 @@ require_once __DIR__ . "/../scripts/session.php";
                         $is_current = str_starts_with($_SERVER["REQUEST_URI"], $base_url . $link);
                         $active = $is_current ? "active" : "";
                         $ariacurrent = $is_current ? "aria-current='page'" : "";
-                        echo "<li class='nav-item'>";
-                        echo "<a class='nav-link $active' href='$base_url/$link/' $ariacurrent>$title</a>";
-                        echo "</li>";
+                        echo "<li class='nav-item'><a class='nav-link $active' href='$base_url/$link/' $ariacurrent>$title</a></li>";
                     }
                     ?>
                 </ul>
