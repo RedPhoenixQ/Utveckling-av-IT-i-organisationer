@@ -42,11 +42,12 @@ require_once __DIR__ . "/../scripts/session.php";
                     }
                     ?>
                 </ul>
-                <div class="ms-auto">
+                <div class="ms-auto text-end">
                     <?php
                     // Save the current url in query params to redirect back to current page
                     $query = http_build_query(["redirect" => $_SERVER["REQUEST_URI"]]);
                     if ($_SESSION[Session::IS_LOGGED_IN]) {
+                        echo "<span class='px-2'>". $_SESSION[Session::NAME] ."</span>";
                         echo "<a class='btn btn-secondary' href='$base_url/logout/?$query'>Logga ut</a>";
                     } else {
                         echo "<a class='btn btn-primary' href='$base_url/login/?$query'>Logga in</a>";
