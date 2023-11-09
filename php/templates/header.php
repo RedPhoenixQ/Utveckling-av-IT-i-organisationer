@@ -30,7 +30,6 @@ require_once __DIR__ . "/../scripts/session.php";
                     <?php 
                     $links = [
                         "Mina sidor" => "minasidor",
-                        "Boka tid" => "bokatid",
                     ];
                     foreach( $links as $title => $link ) {
                         $is_current = str_starts_with($_SERVER["REQUEST_URI"], $base_url . $link);
