@@ -1,4 +1,4 @@
-<?php $title = "Mina Sidor"; require_once "../templates/header.php" ?>
+<?php $title = "Mina Sidor"; require_once "../../templates/header.php" ?>
 
 <main class="container-sm">
     <h1>Boka tid</h1>
@@ -51,4 +51,4 @@
     </form>
 </main>
 
-<?php require_once "../templates/footer.php" ?>
+<?php require_once "../../templates/footer.php" ?>
