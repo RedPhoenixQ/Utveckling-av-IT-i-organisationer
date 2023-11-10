@@ -37,22 +37,20 @@ require_once __DIR__ . "/../scripts/session.php";
                         echo "<li class='nav-item'><a class='nav-link $active' href='$base_url/$link/' $ariacurrent>$title</a></li>";
                     }
                     ?>
-                    <?php if ($_SESSION[Session::IS_LOGGED_IN]) { ?>
-                        <li class="nav-item">
-                            <div class="btn-group">
-                                <a class="btn btn-secondary" href="<?= "$base_url/minasidor/" ?>">Mina sidor</a>
-                                <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="visually-hidden">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="<?= "$base_url/minasidor/journal/" ?>">Journal</a></li>
-                                    <li><a class="dropdown-item" href="<?= "$base_url/minasidor/bokningar/" ?>">Bokningar</a></li>
-                                    <li class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="<?= "$base_url/minasidor/sokvard/" ?>">Sök vård</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    <?php } ?>
+                    <li class="nav-item">
+                        <div class="btn-group">
+                            <a class="btn btn-secondary" href="<?= "$base_url/minasidor/" ?>">Mina sidor</a>
+                            <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<?= "$base_url/minasidor/journal/" ?>">Journal</a></li>
+                                <li><a class="dropdown-item" href="<?= "$base_url/minasidor/bokningar/" ?>">Bokningar</a></li>
+                                <li class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="<?= "$base_url/minasidor/sokvard/" ?>">Sök vård</a></li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
                 <div class="ms-auto text-end">
                     <?php
