@@ -12,8 +12,8 @@ require_once __DIR__ . "/../scripts/session.php";
     <script src="<?= $base_url ?>/static/htmx.min.js"></script>
     <title><?= $title ?? "Hem" ?></title>
 </head>
-<body hx-boost="true">
-    <header class="sticky-top bg-dark">
+<body class="d-flex flex-column" style="min-height: 100dvh; min-height: 100vh;" hx-boost="true">
+    <header class="sticky-top bg-dark-subtle">
         <nav class="navbar navbar-expand-lg navbar-light mx-4">
             <a class="navbar-brand" href="<?= $base_url ?>">Mölndals Vårdcentral</a>
             <button class="navbar-toggler" type="button" 
