@@ -29,7 +29,6 @@ require_once __DIR__ . "/../scripts/session.php";
                 <ul class="navbar-nav text-end text-lg-start">
                     <?php 
                     $links = [
-                        "Mina sidor" => "minasidor",
                     ];
                     foreach( $links as $title => $link ) {
                         $is_current = str_starts_with($_SERVER["REQUEST_URI"], $base_url . $link);
@@ -38,18 +37,33 @@ require_once __DIR__ . "/../scripts/session.php";
                         echo "<li class='nav-item'><a class='nav-link $active' href='$base_url/$link/' $ariacurrent>$title</a></li>";
                     }
                     ?>
+                    <?php if ($_SESSION[Session::IS_LOGGED_IN]) { ?>
+                        <li class="nav-item">
+                            <div class="btn-group">
+                                <a class="btn btn-secondary" href="<?= "$base_url/minasidor/" ?>">Mina sidor</a>
+                                <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="<?= "$base_url/minasidor/journal/" ?>">Journal</a></li>
+                                    <li><a class="dropdown-item" href="<?= "$base_url/minasidor/bokningar/" ?>">Bokningar</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="<?= "$base_url/minasidor/sokvard/" ?>">Sök vård</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <div class="ms-auto text-end">
                     <?php
                     // Save the current url in query params to redirect back to current page
                     $query = http_build_query(["redirect" => $_SERVER["REQUEST_URI"]]);
-                    if ($_SESSION[Session::IS_LOGGED_IN]) {
-                        echo "<span class='px-2'>". $_SESSION[Session::NAME] ."</span>";
-                        echo "<a class='btn btn-secondary' href='$base_url/logout/?$query'>Logga ut</a>";
-                    } else {
-                        echo "<a class='btn btn-primary' href='$base_url/login/?$query'>Logga in</a>";
-                    }
-                    ?>
+                    if ($_SESSION[Session::IS_LOGGED_IN]) { ?>
+                        <span><?= $_SESSION[Session::NAME] ?></span>
+                        <a class="btn btn-danger" href="<?= "$base_url/logout/?$query" ?>">Logga ut</a>
+                    <?php } else { ?>
+                        <a class="btn btn-primary" href=<?= "$base_url/login/?$query" ?>>Logga in</a>
+                    <?php } ?>
                 </div>
             </div>
         </nav>
