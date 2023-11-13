@@ -1,4 +1,3 @@
-<?php var_dump($_GET) ?>
 <?php require_once "../../../scripts/auth/verify_logged_in.php" ?>
 <?php require_once "../../../scripts/erp.php" ?>
 <?php require_once "../../../scripts/session.php" ?>
