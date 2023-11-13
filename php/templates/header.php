@@ -26,7 +26,7 @@ require_once __DIR__ . "/../scripts/session.php";
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="headerNavbar">
-                <ul class="navbar-nav text-end text-lg-start">
+                <ul class="navbar-nav text-end text-lg-start my-2 my-lg-0">
                     <?php 
                     $links = [
                     ];
@@ -43,7 +43,7 @@ require_once __DIR__ . "/../scripts/session.php";
                             <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="visually-hidden">Öppna eller stäng minasidor meny</span>
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropstart">
                                 <li><a class="dropdown-item" href="<?= "$base_url/minasidor/journal/" ?>">Journal</a></li>
                                 <li><a class="dropdown-item" href="<?= "$base_url/minasidor/bokningar/" ?>">Bokningar</a></li>
                                 <li class="dropdown-divider"></li>
