@@ -3,7 +3,7 @@ class Erp
 {
     // WARN: Very insecure
     private const API_KEY = "124785e69495ab9:dab98cd889fd670";
-    private const BASE_URL = "http://193.93.250.83";
+    public const BASE_URL = "http://193.93.250.83";
     private const RESOURCE_URL = self::BASE_URL . "/api/resource/";
     private const METHOD_URL = self::BASE_URL . "/api/method/";
 

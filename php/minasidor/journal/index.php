@@ -7,7 +7,7 @@ require_once "../../templates/header.php" ?>
 <main>
     <?php
     $erp = new Erp("Patient Medical Record");
-    $erp->fields = ["status", "communication_date", "reference_doctype", "reference_name", "subject"];
+    $erp->fields = ["status", "communication_date", "reference_doctype", "reference_name", "subject", "attach"];
     $erp->add_filter(["Patient Medical Record", "patient", "=", $_SESSION[Session::NAME]]);
     $records = $erp->list()["data"];
     ?>
@@ -18,6 +18,7 @@ require_once "../../templates/header.php" ?>
             <th>Datum</th>
             <th>Typ</th>
             <th>Detaljer</th>
+            <th></th>
         </thead>
         <tbody>
             <?php foreach ($records as $record) { ?>
@@ -34,6 +35,11 @@ require_once "../../templates/header.php" ?>
                     </td>
                     <td>
                         <?= $record["subject"] ?>
+                    </td>
+                    <td>
+                        <?php if ($record["attach"]) { ?>
+                        <a class="btn btn-secondary position-relative z-2" href="<?= ERP::BASE_URL . $record["attach"] ?>" target="_blank" rel="noopener noreferrer" hx-boost="false">Attachment</a>
+                        <?php } ?>
                     </td>
                 </tr>
             <?php } ?>
