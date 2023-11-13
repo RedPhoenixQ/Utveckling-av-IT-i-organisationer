@@ -41,7 +41,7 @@ require_once __DIR__ . "/../scripts/session.php";
                         <div class="btn-group">
                             <a class="btn btn-secondary" href="<?= "$base_url/minasidor/" ?>">Mina sidor</a>
                             <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropdown</span>
+                                <span class="visually-hidden">Öppna eller stäng minasidor meny</span>
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="<?= "$base_url/minasidor/journal/" ?>">Journal</a></li>
