@@ -3,7 +3,7 @@
 
 <main>
     <h1>Erp test</h1>
-    <?php
+    <pre><?php
     if (isset($_POST["delete_name"])) {
         $erp = new Erp("Patient");
         var_dump($erp->delete($_POST["delete_name"]));
@@ -15,8 +15,13 @@
         $data = array_filter($_POST);
         $erp = new Erp("Patient");
         var_dump($erp->update($_POST["name"], $data));
+    } else if (isset($_POST["test"])) {
+        var_dump(Erp::method("healthcare.healthcare.doctype.patient_appointment.patient_appointment.update_status", [
+            "appointment_id" => "HLC-APP-2023-00021",
+            "status" => "Closed"
+        ]));
     }
-    ?>
+    ?></pre>
     <form action="" method="post">
         <label for="first_name">First name</label>
         <input type="text" name="first_name" id="first_name">
@@ -82,6 +87,9 @@
         var_dump($erp->read("Test Female")) 
         ?></pre>
     </details>
+    <form action="" method="post">
+        <button name="test">testing</button>
+    </form>
 </main>
 
 <?php require_once "../templates/footer.php" ?>
