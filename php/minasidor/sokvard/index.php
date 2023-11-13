@@ -47,6 +47,16 @@
                     Skulle ni vilja bemötas digital via videosamtal?
                 </label>
             </div>
+            <div class="my-2">
+                <label class="form-label" for="tidspreferens">
+                    När föredrar ni att bli bokade?
+                </label>
+                <select class="form-select" name="tidspreferens" id="tidspreferens">
+                    <option value="" selected>Välj tid här...</option>
+                    <option value="formiddag">Förmiddag</option>
+                    <option value="eftermiddag">Eftermiddag</option>
+                </select>
+            </div>
         </fieldset>
         <button class="btn btn-primary mx-auto">Boka tid</button>
     </form>
