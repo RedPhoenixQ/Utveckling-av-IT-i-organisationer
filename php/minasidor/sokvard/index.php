@@ -58,7 +58,7 @@
                 </select>
             </div>
         </fieldset>
-        <button class="btn btn-primary mx-auto">Boka tid</button>
+        <button class="btn btn-primary mx-auto">Skicka förfrågan</button>
     </form>
 </main>
 
