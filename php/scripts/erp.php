@@ -3,7 +3,9 @@ class Erp
 {
     // WARN: Very insecure
     private const API_KEY = "124785e69495ab9:dab98cd889fd670";
-    private const BASE_URL = "http://193.93.250.83/api/resource/";
+    private const BASE_URL = "http://193.93.250.83";
+    private const RESOURCE_URL = self::BASE_URL . "/api/resource/";
+    private const METHOD_URL = self::BASE_URL . "/api/method/";
 
     private string $doctype;
     private string $name;
@@ -12,6 +14,13 @@ class Erp
     public int $limit_page_length;
     public int $limit_start;
 
+    static function method(string $method, array $data): ?array {
+        $ch = self::start_json_req(self::METHOD_URL . $method);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        return self::finish_json_req($ch);
+    }
+
     public function __construct(string $doctype)
     {
         $this->doctype = $doctype;
@@ -19,7 +28,7 @@ class Erp
 
     private function generate_url()
     {
-        $url = self::BASE_URL . rawurlencode($this->doctype);
+        $url = self::RESOURCE_URL . rawurlencode($this->doctype);
         if (!empty($this->name)) {
             $url .= "/" . rawurlencode($this->name);
         }
@@ -39,10 +48,10 @@ class Erp
         return $url;
     }
 
-    private function start_json_req()
+    private static function start_json_req(string $url)
     {
         try {
-            $ch = curl_init($this->generate_url());
+            $ch = curl_init($url);
         } catch (Exception $e) {
             echo 'Caught exception: ', $e->getMessage(), "\n";
         }
@@ -56,7 +65,7 @@ class Erp
         return $ch;
     }
 
-    private function finish_json_req($ch): ?array
+    private static function finish_json_req($ch): ?array
     {
         $response = curl_exec($ch);
         if ($response === false) {
@@ -77,20 +86,20 @@ class Erp
 
     public function list(): ?array
     {
-        $ch = $this->start_json_req();
+        $ch = $this->start_json_req($this->generate_url());
         return $this->finish_json_req($ch);
     }
 
     public function read(string $name): ?array
     {
         $this->name = $name;
-        $ch = $this->start_json_req();
+        $ch = $this->start_json_req($this->generate_url());
         return $this->finish_json_req($ch);
     }
 
     public function create(array $data): ?array
     {
-        $ch = $this->start_json_req();
+        $ch = $this->start_json_req($this->generate_url());
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         return $this->finish_json_req($ch);
@@ -99,7 +108,7 @@ class Erp
     public function update(string $name, array $data): ?array
     {
         $this->name = $name;
-        $ch = $this->start_json_req();
+        $ch = $this->start_json_req($this->generate_url());
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         return $this->finish_json_req($ch);
@@ -109,7 +118,7 @@ class Erp
     public function delete(string $name): ?array 
     {
         $this->name = $name;
-        $ch = $this->start_json_req();
+        $ch = $this->start_json_req($this->generate_url());
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST,"DELETE");
         return $this->finish_json_req($ch);
     }
