@@ -5,33 +5,40 @@
 require_once "../../templates/header.php" ?>
 
 <main>
-    <h1>Detta är min journal</h1>
     <?php
-    $erp = new Erp("Patient Encounter");
-    $erp->fields = ["title", "appointment", "appointment_type", "practitioner_name", "encounter_date", "encounter_time"];
-    $erp->add_filter(["Patient Encounter", "patient", "=", $_SESSION[Session::NAME]]);
-    $list = $erp->list()["data"];
+    $erp = new Erp("Patient Medical Record");
+    $erp->fields = ["status", "communication_date", "reference_doctype", "reference_name", "subject"];
+    $erp->add_filter(["Patient Medical Record", "patient", "=", $_SESSION[Session::NAME]]);
+    $records = $erp->list()["data"];
     ?>
 
-    <ol>
-        <?php foreach ($list as $encounter) { ?>
-            <li>
-                <details>
-                    <summary>
-                    Patient Encounters
-                    </summary>
-                <table class="table">
-                <tr>
-                    <?php foreach ($encounter as $col => $value){
-                        echo "<td>$value</td>";
-                    } ?>
+    <table class="table">
+        <thead>
+            <th></th>
+            <th>Datum</th>
+            <th>Typ</th>
+            <th>Detaljer</th>
+        </thead>
+        <tbody>
+            <?php foreach ($records as $record) { ?>
+                <tr class="position-relative">
+                    <th scope="row">
+                        <a class="stretched-link"
+                            href="<?= "$base_url/minasidor/journal/" . $record["reference_doctype"] . "?name=" . rawurlencode($record["reference_name"]) ?>"></a>
+                    </th>
+                    <td>
+                        <?= $record["communication_date"] ?>
+                    </td>
+                    <td>
+                        <?= $record["reference_doctype"] ?>
+                    </td>
+                    <td>
+                        <?= $record["subject"] ?>
+                    </td>
                 </tr>
-                </table>
-                </details>
-            </li>
-        <?php } ?>
-    </ol>
-
+            <?php } ?>
+        </tbody>
+    </table>
 </main>
 
 <?php require_once "../../templates/footer.php" ?>
