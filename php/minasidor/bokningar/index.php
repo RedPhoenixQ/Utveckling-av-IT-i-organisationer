@@ -10,7 +10,7 @@ require_once "../../templates/header.php" ?>
 
     <?php
     $erp = new Erp("Patient Appointment");
-    $erp->fields = ["name", "practitioner_name", "duration", "department", "appointment_date", "appointment_type"];
+    $erp->fields = ["name", "practitioner_name", "duration", "department", "appointment_time", "appointment_date", "appointment_type"];
     $erp->add_filter(["Patient Appointment", "patient", "=", $_SESSION[Session::NAME]]);
     $erp->add_filter(["Patient Appointment", "status", "=", "CLOSED"]);
 
@@ -21,8 +21,9 @@ require_once "../../templates/header.php" ?>
         <table class="table">
             <thead>
                 <th>Läkarnamn</th>
-                <th>Tid</th>
+                <th>Duration</th>
                 <th>Avdelning</th>
+                <th>Tid</th>
                 <th>Datum</th>
                 <th>Vårdtyp</th>
             </thead>
@@ -39,8 +40,12 @@ require_once "../../templates/header.php" ?>
                             <?= $record["department"] ?>
                         </td>
                         <td>
+                            <?= $record["appointment_time"] ?>
+                        </td>
+                        <td>
                             <?= $record["appointment_date"] ?>
                         </td>
+
                         <td>
                             <?= $record["appointment_type"] ?>
                         </td>
