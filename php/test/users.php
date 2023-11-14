@@ -8,7 +8,7 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"]) && !empty($_POST["name"])) {
         echo "SSN måste vara 12 siffor";
     } else {
         $stmt = $db->prepare("CALL new_auth(:ssn, :pwd, :name)");
-        $stmt->bindParam("ssn", $ssn, PDO::PARAM_INT);
+        $stmt->bindParam("ssn", $ssn, PDO::PARAM_STR);
         $stmt->bindParam("pwd", $_POST["pwd"], PDO::PARAM_STR);
         $stmt->bindParam("name", $_POST["name"], PDO::PARAM_STR);
         $stmt->execute();
