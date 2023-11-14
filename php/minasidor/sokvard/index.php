@@ -13,14 +13,20 @@
                 <option selected>Välj en kategori</option>
                 <?php 
                 $categories = [
-                    "Värk och skador" => [
-                        "Mage", 
-                        "Ögon", 
-                        "Huvud",
+                    "Vårdkategori" => [
+                        "Allmänläkare",
+                        "Dietist",
+                        "Kurator",
+                        "Psykiatriker",
+                        "Fysioterapeut",
+                        "Tandläkare",
+                        "Dermatolog",
+                        "Ögonläkare",
+                        "Öron-näsa-hals-specialist",
+                        "Gynekolog"
                     ],
-                    "Kontroller" => [
-                        "Hälsokontroll",
-                        "Blodprov"
+                    "Övrig vård" => [
+                        "Vaccination"
                     ],
                 ];
                 foreach ($categories as $category => $options) {
