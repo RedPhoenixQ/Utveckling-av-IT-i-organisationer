@@ -16,6 +16,41 @@
         $records = $erp->list()["data"];
         var_dump($records);
     ?>
+
+    <div class="table responsive">
+        <table class="table">
+            <thead>
+                <th>Läkarnamn</th>
+                <th>Tid</th>
+                <th>Avdelning</th>
+                <th>Datum</th>
+                <th>Vårdtyp</th>
+            </thead>
+            <tbody>
+                <?php foreach ($records as $record) { ?>
+                    <tr class="position-relative">
+                        <td>
+                            <?= $record["practitioner_name"] ?>
+                        </td>
+                        <td>
+                            <?= $record["duration"] ?>
+                        </td>
+                        <td>
+                            <?= $record["department"] ?>
+                        </td>
+                        <td>
+                            <?= $record["appointment_date"] ?>
+                        </td>
+                        <td>
+                            <?= $record["appointment_type"] ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+
 </main>
 
 <?php require_once "../../templates/footer.php" ?>
