@@ -67,3 +67,4 @@ require_once __DIR__ . "/../scripts/session.php";
             </div>
         </nav>
     </header>
+    <main class="container flex-grow-1">
