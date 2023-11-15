@@ -22,44 +22,42 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"]) && !empty($_POST["name"])) {
 }
 ?>
 
-<main>
-    <h1>Användare med konton</h1>
-    <form action="" method="post">
-        <h2>Ny användare</h2>
-        <label>
-            ssn (12 siffor):
-            <input type="text" name="ssn">
-        </label>
-        <label>
-            password:
-            <input type="password" name="pwd">
-        </label>
-        <label>
-            Patient name (id):
-            <input type="text" name="name">
-        </label>
-        <button>Create</button>
-    </form>
-    <table class="table table-striped">
-        <thead>
-            <th>SSN</th>
-            <th>Name</th>
-            <th></th>
-        </thead>
-        <tbody>
-            <?php foreach ($db->query("SELECT ssn, name FROM auth") as $user) { ?>
-            <tr>
-            <td><?=$user["ssn"]?></td>
-            <td><?=$user["name"]?></td>
-            <td>
-                <form action="" method="post">
-                    <input type="hidden" name="ssn" value="<?=$user["ssn"]?>">
-                    <button name="delete" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-            <?php } ?>
-        </tbody>
-    </table>
-</main>
+<h1>Användare med konton</h1>
+<form action="" method="post">
+    <h2>Ny användare</h2>
+    <label>
+        ssn (12 siffor):
+        <input type="text" name="ssn">
+    </label>
+    <label>
+        password:
+        <input type="password" name="pwd">
+    </label>
+    <label>
+        Patient name (id):
+        <input type="text" name="name">
+    </label>
+    <button>Create</button>
+</form>
+<table class="table table-striped">
+    <thead>
+        <th>SSN</th>
+        <th>Name</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <?php foreach ($db->query("SELECT ssn, name FROM auth") as $user) { ?>
+        <tr>
+        <td><?=$user["ssn"]?></td>
+        <td><?=$user["name"]?></td>
+        <td>
+            <form action="" method="post">
+                <input type="hidden" name="ssn" value="<?=$user["ssn"]?>">
+                <button name="delete" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <?php } ?>
+    </tbody>
+</table>
 
 <?php require_once "../templates/footer.php" ?>
