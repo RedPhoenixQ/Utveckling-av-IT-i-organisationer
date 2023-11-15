@@ -6,9 +6,9 @@ require_once "../scripts/session.php";
 <?php $title = "Mina Sidor";
 require_once "../templates/header.php" ?>
 
-<main>
+<main class="container">
+    <h2 class="h2">Mina sidor</h2>
     <div class="d-grid gap-2 d-md-block">
-        <h2 class="h2">Mina sidor</h2>
         <a class="btn btn-primary" href="<?= "$base_url/minasidor/journal/" ?>">Min journal</a>
         <a class="btn btn-primary" href="<?= "$base_url/minasidor/bokningar/" ?>">Mina bokningar</a>
         <a class="btn btn-primary" href="<?= "$base_url/minasidor/sokvard/" ?>">Sök vård</a>
