@@ -7,9 +7,14 @@ class Erp
     private const RESOURCE_URL = self::BASE_URL . "/api/resource/";
     private const METHOD_URL = self::BASE_URL . "/api/method/";
 
+    public const ORDER_ASC = "ASC";
+    public const ORDER_DESC = "DESC";
+
     private string $doctype;
     private string $name;
     private array $filters;
+    private array $or_filters;
+    private string $order_by;
     public array $fields;
     public int $limit_page_length;
     public int $limit_start;
@@ -33,7 +38,7 @@ class Erp
             $url .= "/" . rawurlencode($this->name);
         }
         $query = [];
-        foreach (["fields", "filters", "limit_page_length", "limit_start"] as $member) {
+        foreach (["fields", "filters", "or_filters", "order_by", "limit_page_length", "limit_start"] as $member) {
             if (!empty($this->{$member})) {
                 if (gettype($this->{$member}) == "array") {
                     $query[$member] = json_encode($this->{$member});
@@ -82,6 +87,15 @@ class Erp
     public function add_filter(array $filter)
     {
         $this->filters[] = $filter;
+    }
+
+    public function add_or_filter(array $filter)
+    {
+        $this->or_filters[] = $filter;
+    }
+
+    public function order_by(string $field, string $order = self::ORDER_ASC) {
+        $this->order_by = "$field $order";
     }
 
     public function list(): ?array

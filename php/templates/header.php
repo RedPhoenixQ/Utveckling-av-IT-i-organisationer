@@ -58,6 +58,7 @@ require_once __DIR__ . "/../scripts/session.php";
                     $query = http_build_query(["redirect" => $_SERVER["REQUEST_URI"]]);
                     if ($_SESSION[Session::IS_LOGGED_IN]) { ?>
                         <span><?= $_SESSION[Session::NAME] ?></span>
+                        <?php require __DIR__ . "/notifikationer.php" ?> 
                         <a class="btn btn-danger" href="<?= "$base_url/logout/?$query" ?>">Logga ut</a>
                     <?php } else { ?>
                         <a class="btn btn-primary" href=<?= "$base_url/login/?$query" ?>>Logga in</a>
