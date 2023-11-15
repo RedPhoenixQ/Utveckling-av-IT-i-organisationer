@@ -104,11 +104,10 @@ class Erp
         return $this->finish_json_req($ch);
     }
 
-    public function read(string $name): ?array
+    public static function read(string $doctype, string $name): ?array
     {
-        $this->name = $name;
-        $ch = $this->start_json_req($this->generate_url());
-        return $this->finish_json_req($ch);
+        $ch = self::start_json_req(self::RESOURCE_URL . "$doctype/$name");
+        return self::finish_json_req($ch);
     }
 
     public function create(array $data): ?array
