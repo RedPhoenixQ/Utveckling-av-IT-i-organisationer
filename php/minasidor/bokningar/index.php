@@ -1,5 +1,5 @@
 <?php require_once "../../scripts/auth/verify_logged_in.php" ?>
-<?php require_once "../../scripts/erp_appointment.php" ?>
+<?php require_once "../../scripts/erp.php" ?>
 <?php require_once "../../scripts/session.php" ?>
 <?php $title = "Bokningar";
 require_once "../../templates/header.php" ?>
@@ -12,6 +12,7 @@ $erp_appointment = new Erp("Patient Appointment");
 $erp_appointment->fields = ["name", "practitioner_name", "duration", "department", "appointment_time", "appointment_date", "appointment_type"];
 $erp_appointment->add_filter(["Patient Appointment", "patient", "=", $_SESSION[Session::NAME]]);
 $erp_appointment->add_filter(["Patient Appointment", "status", "!=", "CLOSED"]);
+$erp_appointment->order_by("appointment_datetime", Erp::ORDER_DESC);
 
 $records = $erp_appointment->list()["data"];
 ?>
