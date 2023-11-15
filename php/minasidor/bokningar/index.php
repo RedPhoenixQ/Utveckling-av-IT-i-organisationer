@@ -16,7 +16,7 @@ $erp->add_filter(["Patient Appointment", "status", "=", "CLOSED"]);
 $records = $erp->list()["data"];
 ?>
 
-<div class="table responsive">
+<div class="table-responsive">
     <table class="table">
         <thead>
             <th>Läkarnamn</th>
