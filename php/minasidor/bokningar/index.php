@@ -19,18 +19,24 @@ $records = $erp->list()["data"];
 <div class="table-responsive">
     <table class="table">
         <thead>
-            <th>Läkarnamn</th>
+            <th>Vårdtyp</th>
+            <th>Datum</th>
+            <th>Tid</th>
             <th>Duration</th>
             <th>Avdelning</th>
-            <th>Tid</th>
-            <th>Datum</th>
-            <th>Vårdtyp</th>
+            <th>Läkarnamn</th>
         </thead>
         <tbody>
             <?php foreach ($records as $record) { ?>
                 <tr class="position-relative">
                     <td>
-                        <?= $record["practitioner_name"] ?>
+                        <?= $record["appointment_type"] ?>
+                    </td>
+                    <td>
+                        <?= $record["appointment_date"] ?>
+                    </td>
+                    <td>
+                        <?= $record["appointment_time"] ?>
                     </td>
                     <td>
                         <?= $record["duration"] ?>
@@ -39,14 +45,7 @@ $records = $erp->list()["data"];
                         <?= $record["department"] ?>
                     </td>
                     <td>
-                        <?= $record["appointment_time"] ?>
-                    </td>
-                    <td>
-                        <?= $record["appointment_date"] ?>
-                    </td>
-
-                    <td>
-                        <?= $record["appointment_type"] ?>
+                        <?= $record["practitioner_name"] ?>
                     </td>
                 </tr>
             <?php } ?>
