@@ -6,9 +6,7 @@ require_once "../../../templates/header.php" ?>
 
 <h1>Lab Test</h1>
 <?php
-$erp = new Erp("Lab Test");
-$erp->add_filter(["Lab Test", "patient", "=", $_SESSION[Session::NAME]]);
-$encounter = $erp->read($_GET["name"])["data"];
+$encounter = Erp::read(Doc::LAB_TEST, $_GET["name"])["data"];
 ?>
 
 <dl>

@@ -21,8 +21,7 @@ require_once "../templates/header.php" ?>
     <?php endforeach; ?>
 </nav>
 <?php
-$erp_patient = new Erp("Patient");
-$patient = $erp_patient->read($_SESSION[Session::NAME])["data"];
+$patient = Erp::read(Doc::PATIENT, $_SESSION[Session::NAME])["data"];
 ?>
 <h3>Välkommen <?php echo $patient["patient_name"] ?></h3>
 <details>

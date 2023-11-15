@@ -5,9 +5,9 @@
 require_once "../../templates/header.php" ?>
 
 <?php
-$erp = new Erp("Patient Medical Record");
+$erp = new Erp(Doc::PATIENT_MEDICAL_RECORD);
 $erp->fields = ["status", "communication_date", "reference_doctype", "reference_name", "subject", "attach"];
-$erp->add_filter(["Patient Medical Record", "patient", "=", $_SESSION[Session::NAME]]);
+$erp->add_filter([Doc::PATIENT_MEDICAL_RECORD, "patient", "=", $_SESSION[Session::NAME]]);
 $records = $erp->list()["data"];
 ?>
 

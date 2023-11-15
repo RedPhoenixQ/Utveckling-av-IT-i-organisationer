@@ -8,10 +8,10 @@ require_once "../../templates/header.php" ?>
 <h1>Detta är mina bokningar</h1>
 
 <?php
-$erp_appointment = new Erp("Patient Appointment");
+$erp_appointment = new Erp(Doc::PATEINT_APPOINTMENT);
 $erp_appointment->fields = ["name", "practitioner_name", "duration", "department", "appointment_time", "appointment_date", "appointment_type"];
-$erp_appointment->add_filter(["Patient Appointment", "patient", "=", $_SESSION[Session::NAME]]);
-$erp_appointment->add_filter(["Patient Appointment", "status", "!=", "CLOSED"]);
+$erp_appointment->add_filter([Doc::PATEINT_APPOINTMENT, "patient", "=", $_SESSION[Session::NAME]]);
+$erp_appointment->add_filter([Doc::PATEINT_APPOINTMENT, "status", "!=", "CLOSED"]);
 $erp_appointment->order_by("appointment_datetime", Erp::ORDER_DESC);
 
 $records = $erp_appointment->list()["data"];
