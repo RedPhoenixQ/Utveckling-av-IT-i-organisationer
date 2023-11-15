@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ ."/../scripts/erp.php";
+require_once __DIR__ ."/../scripts/session.php";
 $erp_notification = new Erp("Gr3 Notification");
 $erp_notification->fields = ["name", "title", "description", "related_type", "related_name", "seen", "creation"];
+$erp_notification->add_filter(["Gr3 Notification", "patient", "=", $_SESSION[Session::NAME]]);
 $erp_notification->limit_page_length = 5;
 $erp_notification->add_filter(["Gr3 Notification", "seen", "=", "false"]);
 $notifications = $erp_notification->list()["data"];
