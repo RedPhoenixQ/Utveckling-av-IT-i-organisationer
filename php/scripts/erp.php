@@ -134,4 +134,15 @@ class Erp
         return self::finish_json_req($ch);
     }
 }
+
+class Doc {
+    public const USER = "user";
+    public const PATIENT = "Patient";
+    public const PATEINT_APPOINTMENT = "Patient Appointment";
+    public const PATIENT_ENCOUNTER = "Patient Encounter";
+    public const LAB_TEST = "Lab Test";
+    public const CLINICAL_PROCEDURE = "Clinical Procedure";
+    public const PATIENT_NOTIFICATOIN = "Gr3 Notification";
+    public const PATIENT_MEDICAL_RECORD= "Patient Medical Record";
+}
 ?>
