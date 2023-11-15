@@ -24,53 +24,55 @@ $unseen_amount = Erp::method("unseen_notifications", ["patient" => $_SESSION[Ses
     </span>
 </button>
 <dialog class="border-0 rounded-4 px-4 py-0 text-bg-dark text-start position-relative" id="notification-dialog">
-    <header class="d-flex align-items-center mb-2 pt-2 sticky-top bg-dark">
-        <span class="fs-4 fw-bold">Notifikationer</span>
-        <button class="btn ms-auto" onclick="document.getElementById('notification-dialog')?.close()" title="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-            </svg>
-            <span class="visually-hidden">Close</span>
-        </button>
-    </header>
-    <ul class="list-group">
-        <?php foreach( $notifications as $notification ): ?>
-            <?php if ($notification["seen"] == 0) {
-                $unread = '<span class="text-primary"
-                hx-post="' . "$base_url/api/notification.php" . '" hx-trigger="intersect once"
-                hx-swap="none"
-                hx-vals=\'' . json_encode(["name" => $notification["name"]]) . '\'
-                ><span class="visually-hidden">Oläst.</span>
-                ●</span>';
-            }
-            switch ($notification["related_type"]) {
-                case "Patient Appointment":
-                    // Link to appointment site when availible
-                break;
-                default:
-                $link_to_related = "$base_url/minasidor/journal/" . rawurlencode($notification["related_type"]). "/?name=" . rawurlencode($notification["related_name"]);
-                break;
-            }
-            ?>
-            <li class="list-group-item <?php if (!empty($link_to_related)) {
-                echo "list-group-item-action"; } ?> position-relative">
-                <?php if (isset($link_to_related)): ?>
-                    <a class="stretched-link" href="<?=$link_to_related?>">
-                        <span class="visually-hidden">Notifikationsdetaljer</span>
-                    </a>
-                <?php endif ?>
-                <small>
-                    <?= $unread ?? "" ?>
-                    <span><?= $notification["related_type"] ?></span>
-                    -
-                    <time datetime="<?= $notification["creation"] ?>"><?= date("Y/m/d H:i", (new DateTime($notification["creation"]))->getTimestamp()) ?></time>
-                </small>
-                <div class="fs-5 fw-bold"><?= $notification["title"] ?></div>
-                <small><?= $notification["description"] ?></small>
-            </li>
-        <?php endforeach ?>
-    </ul>
-    <footer class="mt-2 py-2 text-center sticky-bottom bg-dark">
-        <a href="<?= "$base_url/minasidor/notification/" ?>">Alla notifikationer</a>
-    </footer>
+    <section>
+        <header class="d-flex align-items-center mb-2 pt-2 sticky-top bg-dark">
+            <span class="fs-4 fw-bold">Notifikationer</span>
+            <button class="btn ms-auto" onclick="document.getElementById('notification-dialog')?.close()" title="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+                <span class="visually-hidden">Close</span>
+            </button>
+        </header>
+        <ul class="list-group">
+            <?php foreach( $notifications as $notification ): ?>
+                <?php if ($notification["seen"] == 0) {
+                    $unread = '<span class="text-primary"
+                    hx-post="' . "$base_url/api/notification.php" . '" hx-trigger="intersect once"
+                    hx-swap="none"
+                    hx-vals=\'' . json_encode(["name" => $notification["name"]]) . '\'
+                    ><span class="visually-hidden">Oläst.</span>
+                    ●</span>';
+                }
+                switch ($notification["related_type"]) {
+                    case "Patient Appointment":
+                        // Link to appointment site when availible
+                    break;
+                    default:
+                    $link_to_related = "$base_url/minasidor/journal/" . rawurlencode($notification["related_type"]). "/?name=" . rawurlencode($notification["related_name"]);
+                    break;
+                }
+                ?>
+                <li class="list-group-item <?php if (!empty($link_to_related)) {
+                    echo "list-group-item-action"; } ?> position-relative">
+                    <?php if (isset($link_to_related)): ?>
+                        <a class="stretched-link" href="<?=$link_to_related?>">
+                            <span class="visually-hidden">Notifikationsdetaljer</span>
+                        </a>
+                    <?php endif ?>
+                    <small>
+                        <?= $unread ?? "" ?>
+                        <span><?= $notification["related_type"] ?></span>
+                        -
+                        <time datetime="<?= $notification["creation"] ?>"><?= date("Y/m/d H:i", (new DateTime($notification["creation"]))->getTimestamp()) ?></time>
+                    </small>
+                    <div class="fs-5 fw-bold"><?= $notification["title"] ?></div>
+                    <small><?= $notification["description"] ?></small>
+                </li>
+            <?php endforeach ?>
+        </ul>
+        <footer class="mt-2 py-2 text-center sticky-bottom bg-dark">
+            <a href="<?= "$base_url/minasidor/notification/" ?>">Alla notifikationer</a>
+        </footer>
+    </section>
 </dialog>
