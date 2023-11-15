@@ -32,28 +32,26 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"])) {
 
 <?php $title = "Mina Sidor"; require_once "../templates/header.php" ?>
 
-<main class="container m-auto">
-    <h1>Logga in</h1>
-    <form method="post" class="my-4">
-        <div class="form-floating my-2">
-            <input class="form-control" type="text" name="ssn" id="ssn" pattern="\d{8}-?\d{4}" title="Ditt personnummer med 12 siffor, 'YYYYMMDD-XXXX'" required>
-            <label for="ssn">Personnummer (12-siffror):</label>
-        </div>
-        <div class="form-floating my-2">
-            <input class="form-control" type="password" name="pwd" id="pwd" required>
-            <label for="pwd">Lösenord:</label>
-        </div>
-        <?php if (!empty($form_error)) {
-            echo "<div class='m-4'><span class='badge text-bg-danger fs-5'>";
-            echo $form_error;
-            echo "</span></div>";
-        }?>
-        <div class="my-4 mx-auto mw-100" style="width:fit-content">
-            <button class="btn btn-primary">Logga in</button>
-            <span>eller</span>
-            <a href="<?=$base_url?>/registrera">registrera dig här</a>
-        </div>
-    </form>
-</main>
+<h1>Logga in</h1>
+<form method="post" class="my-4">
+    <div class="form-floating my-2">
+        <input class="form-control" type="text" name="ssn" id="ssn" pattern="\d{8}-?\d{4}" title="Ditt personnummer med 12 siffor, 'YYYYMMDD-XXXX'" required>
+        <label for="ssn">Personnummer (12-siffror):</label>
+    </div>
+    <div class="form-floating my-2">
+        <input class="form-control" type="password" name="pwd" id="pwd" required>
+        <label for="pwd">Lösenord:</label>
+    </div>
+    <?php if (!empty($form_error)) {
+        echo "<div class='m-4'><span class='badge text-bg-danger fs-5'>";
+        echo $form_error;
+        echo "</span></div>";
+    }?>
+    <div class="my-4 mx-auto mw-100" style="width:fit-content">
+        <button class="btn btn-primary">Logga in</button>
+        <span>eller</span>
+        <a href="<?=$base_url?>/registrera">registrera dig här</a>
+    </div>
+</form>
 
 <?php require_once "../templates/footer.php" ?>
