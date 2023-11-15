@@ -18,7 +18,7 @@ $records = $erp_appointment->list()["data"];
 ?>
 
 <div class="table-responsive">
-    <table class="table">
+    <table class="table align-middle">
         <thead>
             <th>Vårdtyp</th>
             <th>Datum</th>
@@ -26,6 +26,8 @@ $records = $erp_appointment->list()["data"];
             <th>Duration</th>
             <th>Avdelning</th>
             <th>Läkarnamn</th>
+            <th></th>
+            <th></th>
         </thead>
         <tbody>
             <?php foreach ($records as $record) { ?>
@@ -47,6 +49,16 @@ $records = $erp_appointment->list()["data"];
                     </td>
                     <td>
                         <?= $record["practitioner_name"] ?>
+                    </td>
+                    <td>
+                        <form action="" method="post">
+                            <button class="btn btn-secondary">Omboka</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="" method="post">
+                            <button class="btn btn-danger">Avboka</button>
+                        </form>
                     </td>
                 </tr>
             <?php } ?>
