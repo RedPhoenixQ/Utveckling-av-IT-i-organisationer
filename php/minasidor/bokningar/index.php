@@ -11,7 +11,7 @@ require_once "../../templates/header.php" ?>
 $erp = new Erp("Patient Appointment");
 $erp->fields = ["name", "practitioner_name", "duration", "department", "appointment_time", "appointment_date", "appointment_type"];
 $erp->add_filter(["Patient Appointment", "patient", "=", $_SESSION[Session::NAME]]);
-$erp->add_filter(["Patient Appointment", "status", "=", "CLOSED"]);
+$erp->add_filter(["Patient Appointment", "status", "!=", "CLOSED"]);
 
 $records = $erp->list()["data"];
 ?>
