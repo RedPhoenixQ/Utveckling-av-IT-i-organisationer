@@ -1,7 +1,7 @@
 <?php 
     $notifications = [
-        ["name" => "NOT-123-001", "read" => true, "date" => time(),"content"=> "This is a test message for you", "category" => "Lab Test"],
-        ["name" => "NOT-123-002", "read" => false, "date" => time() - 7*24*60*60,"content"=> "En ny bokning har skapats den 2023-05-03", "category" => "Encounter"],
+        ["name" => "NOT-123-001", "seen" => true, "date" => time(),"content"=> "This is a test message for you", "category" => "Lab Test"],
+        ["name" => "NOT-123-002", "seen" => false, "date" => time() - 7*24*60*60,"content"=> "En ny bokning har skapats den 2023-05-03", "category" => "Encounter"],
     ]
 ?>
 
@@ -27,7 +27,7 @@
     <main>
         <ul class="list-group">
             <?php foreach( $notifications as $notification ): ?>
-                <?php if (!$notification["read"]) {
+                <?php if (!$notification["seen"]) {
                     $unread = '<span class="text-primary"><span class="visually-hidden">Oläst.</span>
                     ●</span>';
                 } ?>
