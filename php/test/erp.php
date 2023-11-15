@@ -17,7 +17,7 @@
         var_dump($erp->update($_POST["name"], $data));
     } else if (isset($_POST["test"])) {
         var_dump(Erp::method("healthcare.healthcare.doctype.patient_appointment.patient_appointment.update_status", [
-            "appointment_id" => "HLC-APP-2023-00021",
+            "appointment_id" => $_POST["id"],
             "status" => "Closed"
         ]));
     }
@@ -88,6 +88,7 @@
         ?></pre>
     </details>
     <form action="" method="post">
+        <input type="text" name="id">
         <button name="test">testing</button>
     </form>
 </main>
