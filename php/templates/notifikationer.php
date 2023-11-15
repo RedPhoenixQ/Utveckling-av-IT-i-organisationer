@@ -35,8 +35,12 @@ $unseen_amount = Erp::method("unseen_notifications", ["patient" => $_SESSION[Ses
     <main>
         <ul class="list-group">
             <?php foreach( $notifications as $notification ): ?>
-                <?php if (!$notification["seen"]) {
-                    $unread = '<span class="text-primary"><span class="visually-hidden">Oläst.</span>
+                <?php if ($notification["seen"] == 0) {
+                    $unread = '<span class="text-primary"
+                    hx-post="' . "$base_url/api/notification.php" . '" hx-trigger="intersect once"
+                    hx-swap="none"
+                    hx-include="find [name=\'name\']"
+                    ><span class="visually-hidden">Oläst.</span>
                     ●</span>';
                 }
                 switch ($notification["related_type"]) {
@@ -50,6 +54,7 @@ $unseen_amount = Erp::method("unseen_notifications", ["patient" => $_SESSION[Ses
                 ?>
                 <li class="list-group-item <?php if (!empty($link_to_related)) {
                     echo "list-group-item-action"; } ?> position-relative">
+                    <input type="hidden" name="name" value="<?= $notification["name"] ?>">
                     <?php if (isset($link_to_related)): ?>
                         <a class="stretched-link" href="<?=$link_to_related?>">
                             <span class="visually-hidden">Notifikationsdetaljer</span>
