@@ -119,13 +119,12 @@ class Erp
         return $this->finish_json_req($ch);
     }
     
-    public function update(string $name, array $data): ?array
+    public static function update(string $doctype, string $name, array $data): ?array
     {
-        $this->name = $name;
-        $ch = $this->start_json_req($this->generate_url());
+        $ch = self::start_json_req(self::RESOURCE_URL . $doctype);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        return $this->finish_json_req($ch);
+        return self::finish_json_req($ch);
     }
 
 
