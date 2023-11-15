@@ -128,12 +128,11 @@ class Erp
     }
 
 
-    public function delete(string $name): ?array 
+    public static function delete(string $doctype, string $name): ?array 
     {
-        $this->name = $name;
-        $ch = $this->start_json_req($this->generate_url());
+        $ch = self::start_json_req(self::RESOURCE_URL . $doctype);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST,"DELETE");
-        return $this->finish_json_req($ch);
+        return self::finish_json_req($ch);
     }
 }
 ?>
