@@ -23,7 +23,6 @@ require_once "../templates/header.php" ?>
     </nav>
     <?php
     $erp_patient = new Erp("Patient");
-    $erp_patient->fields = ["patient_name"];
     $patient = $erp_patient->read($_SESSION[Session::NAME])["data"];
     ?>
     <h3>Välkommen <?php echo $patient["patient_name"] ?></h3>
