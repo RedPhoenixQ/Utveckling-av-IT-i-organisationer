@@ -39,7 +39,7 @@ $unseen_amount = Erp::method("unseen_notifications", ["patient" => $_SESSION[Ses
                     $unread = '<span class="text-primary"
                     hx-post="' . "$base_url/api/notification.php" . '" hx-trigger="intersect once"
                     hx-swap="none"
-                    hx-include="find [name=\'name\']"
+                    hx-vals=\'' . json_encode(["name" => $notification["name"]]) . '\'
                     ><span class="visually-hidden">Oläst.</span>
                     ●</span>';
                 }
@@ -54,7 +54,6 @@ $unseen_amount = Erp::method("unseen_notifications", ["patient" => $_SESSION[Ses
                 ?>
                 <li class="list-group-item <?php if (!empty($link_to_related)) {
                     echo "list-group-item-action"; } ?> position-relative">
-                    <input type="hidden" name="name" value="<?= $notification["name"] ?>">
                     <?php if (isset($link_to_related)): ?>
                         <a class="stretched-link" href="<?=$link_to_related?>">
                             <span class="visually-hidden">Notifikationsdetaljer</span>
