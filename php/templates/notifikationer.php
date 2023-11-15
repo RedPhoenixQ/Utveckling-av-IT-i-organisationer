@@ -9,7 +9,7 @@ $erp_notification->limit_page_length = 5;
 // Could not return "data" if there was an error
 $notifications = $erp_notification->list()["data"];
 // Could return "error" instead of "unseen"
-$unseen_amount = Erp::method("unseen_notifications", ["patient" => $_SESSION[Session::NAME]])["unseen"];
+$unseen_amount = Erp::method(Method::UNSEEN_NOTIFICATIONS, ["patient" => $_SESSION[Session::NAME]])["unseen"];
 ?>
 
 <button class="btn" type="button" onclick="document.getElementById('notification-dialog')?.showModal()">

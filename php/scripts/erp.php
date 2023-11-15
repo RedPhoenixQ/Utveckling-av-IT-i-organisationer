@@ -145,4 +145,9 @@ class Doc {
     public const PATIENT_NOTIFICATOIN = "Gr3 Notification";
     public const PATIENT_MEDICAL_RECORD= "Patient Medical Record";
 }
+
+class Method {
+    public const UNSEEN_NOTIFICATIONS = "unseen_notifications";
+    public const PATIENT_APPOINTMENT_UPDATE_STATUS = "healthcare.healthcare.doctype.patient_appointment.patient_appointment.update_status";
+}
 ?>

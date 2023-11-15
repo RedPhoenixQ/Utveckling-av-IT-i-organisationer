@@ -12,7 +12,7 @@ if (isset($_POST["delete_name"])) {
     $data = array_filter($_POST);
     var_dump(Erp::update(Doc::PATIENT, $_POST["name"], $data));
 } else if (isset($_POST["test"])) {
-    var_dump(Erp::method("healthcare.healthcare.doctype.patient_appointment.patient_appointment.update_status", [
+    var_dump(Erp::method(Method::PATIENT_APPOINTMENT_UPDATE_STATUS, [
         "appointment_id" => $_POST["id"],
         "status" => "Closed"
     ]));
