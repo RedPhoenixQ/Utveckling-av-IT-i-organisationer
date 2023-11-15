@@ -4,16 +4,13 @@
 <h1>Erp test</h1>
 <pre><?php
 if (isset($_POST["delete_name"])) {
-    $erp = new Erp("Patient");
-    var_dump($erp->delete($_POST["delete_name"]));
+    var_dump(Erp::delete(Doc::PATIENT, $_POST["delete_name"]));
 } else if (isset($_POST["create"])) {
     $data = array_filter($_POST);
-    $erp = new Erp("Patient");
-    var_dump($erp->create($data));
+    var_dump(Erp::create(Doc::PATIENT, $data));
 } else if (isset($_POST["update"])) {
     $data = array_filter($_POST);
-    $erp = new Erp("Patient");
-    var_dump($erp->update($_POST["name"], $data));
+    var_dump(Erp::update(Doc::PATIENT, $_POST["name"], $data));
 } else if (isset($_POST["test"])) {
     var_dump(Erp::method("healthcare.healthcare.doctype.patient_appointment.patient_appointment.update_status", [
         "appointment_id" => $_POST["id"],
@@ -41,14 +38,14 @@ if (isset($_POST["delete_name"])) {
 <details>
     <summary>Users</summary>
     <pre><?php
-    $erp = new Erp("User");
+    $erp = new Erp(Doc::USER);
     var_dump($erp->list()) 
     ?></pre>
 </details>
 <details>
     <summary>Patients</summary>
     <?php
-    $erp = new Erp("Patient");
+    $erp = new Erp(Doc::PATIENT);
     $erp->fields = ["name", "uid", "first_name", "sex"];
     $patients = $erp->list();
     echo "<ul>";
@@ -72,7 +69,7 @@ if (isset($_POST["delete_name"])) {
 <details>
     <summary>Female Patients</summary>
     <pre><?php
-    $erp = new Erp("Patient");
+    $erp = new Erp(Doc::PATIENT);
     $erp->fields = ["name", "uid", "first_name", "sex"];
     $erp->add_filter(["Patient", "sex", "=", "Female"]);
     var_dump($erp->list()) 
@@ -80,11 +77,7 @@ if (isset($_POST["delete_name"])) {
 </details>
 <details>
     <summary>One Patient: Test Female</summary>
-    <pre><?php
-    $erp = new Erp("Patient");
-    $erp->fields = ["name", "uid", "first_name", "sex"];
-    var_dump($erp->read("Test Female")) 
-    ?></pre>
+    <pre><?php var_dump(Erp::read(Doc::PATIENT, "Test Female")) ?></pre>
 </details>
 <form action="" method="post">
     <input type="text" name="id">
