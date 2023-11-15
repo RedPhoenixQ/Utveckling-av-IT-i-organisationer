@@ -30,15 +30,3 @@ CREATE TABLE IF NOT EXISTS auth(
     name VARCHAR(140) NOT NULL,
     PRIMARY KEY (ssn)
 );
-
-CREATE TABLE notification(
-	id INT AUTO_INCREMENT,
-    created_at DATETIME DEFAULT NOW(),
-	patient_name VARCHAR(140) NOT NULL,
-    seen BOOLEAN NOT NULL DEFAULT false,
-    content VARCHAR(300) NOT NULL,
-    doctype VARCHAR(140),
-    # Could add index on doc_name to make searching for previous related notifications faster
-    doc_name VARCHAR(140),
-    PRIMARY KEY (id, patient_name)
-);
