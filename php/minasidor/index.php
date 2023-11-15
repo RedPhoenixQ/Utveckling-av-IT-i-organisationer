@@ -22,15 +22,11 @@ require_once "../templates/header.php" ?>
         <?php endforeach; ?>
     </nav>
     <?php
-    $patient = new Erp("Patient");
-    $patient->fields = ["patient_name"];
-    $patient->add_filter(["Patient", "patient_name", "=", $_SESSION[Session::NAME]]);
-    $records = $patient->list()["data"];
+    $erp_patient = new Erp("Patient");
+    $erp_patient->fields = ["patient_name"];
+    $patient = $erp_patient->read($_SESSION[Session::NAME])["data"];
     ?>
-    <h3>Välkommen <?php echo $_SESSION[Session::NAME]; ?></h3>
-
-
-    <?= var_dump($records); ?>
+    <h3>Välkommen <?php echo $patient["patient_name"] ?></h3>
 </main>
 
 <?php require_once "../templates/footer.php" ?>
