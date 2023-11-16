@@ -10,9 +10,9 @@
         <span class="visually-hidden">Tema</span>
     </span>
 </button>
-<dialog class="border-0 rounded-4 px-4 py-0 text-bg-dark text-start position-relative" id="theme-dialog">
-    <section>
-        <header class="d-flex align-items-center mb-2 pt-2 sticky-top bg-dark">
+<dialog class="border-0 rounded-4 px-4 py-0 text-start position-relative" id="theme-dialog">
+    <section style="background-color: inherit;">
+        <header class="d-flex align-items-center mb-2 pt-2 sticky-top" style="background-color: inherit;">
             <span class="fs-4 fw-bold">Byt tema</span>
             <button class="btn ms-auto" onclick="document.getElementById('theme-dialog')?.close()" title="Close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" aria-hidden="true">
@@ -26,11 +26,12 @@
             <label class="form-label" for="theme-select">
                 Tema
             </label>
-            <select class="form-select" name="theme" id="theme-select">
+            <select class="form-select bg-body" name="theme" id="theme-select">
                 <?php
                 $themes = [
                     "Standard" => "output.css",
                     "Lux" => "Lux.min.css",
+                    "Litera" => "Litera.min.css",
                     "1" => "theme1.css",
                     "2" => "theme2.css",
                     "3" => "theme3.css",
