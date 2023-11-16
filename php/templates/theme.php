@@ -33,6 +33,7 @@
                     "Lux" => "Lux.min.css",
                     "Litera" => "Litera.min.css",
                     "Flatly" => "Flatly.min.css",
+                    "Minty" => "Minty.min.css",
                     "1" => "theme1.css",
                     "2" => "theme2.css",
                     "3" => "theme3.css",
