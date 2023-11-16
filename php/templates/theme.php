@@ -44,6 +44,10 @@
                     echo "<option value='$path' $selected>$name</option>";
                 } ?>
             </select>
+            <div class="form-check my-2">
+                <input class="form-check-input" type="checkbox" name="dark" id="dark_check" <?= $_SESSION[Session::BS_THEME_MODE] == "dark" ? "checked" : "" ?>>
+                <label class="form-check-label" for="dark_check">Darkmode</label>
+            </div>
             <button class="btn btn-primary my-2">Byt tema</button>
         </form>
 </dialog>

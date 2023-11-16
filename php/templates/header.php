@@ -4,7 +4,7 @@ require_once __DIR__ . "/../scripts/session.php";
 $theme = $_SESSION[Session::THEME] ?? "output.css";
 ?>
 <!DOCTYPE html>
-<html lang="sv" data-bs-theme="dark">
+<html lang="sv" data-bs-theme="<?= $_SESSION[Session::BS_THEME_MODE] ?? "dark" ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
