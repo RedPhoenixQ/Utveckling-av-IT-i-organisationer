@@ -35,6 +35,7 @@
                     "Flatly" => "Flatly.min.css",
                     "Minty" => "Minty.min.css",
                     "Morph" => "Morph.min.css",
+                    "Pulse" => "Pulse.min.css",
                     "1" => "theme1.css",
                     "2" => "theme2.css",
                     "3" => "theme3.css",
