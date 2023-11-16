@@ -11,7 +11,7 @@ class Erp
     public const ORDER_DESC = "DESC";
 
     private string $doctype;
-    private string $name;
+    private ?string $name = null;
     private array $filters;
     private array $or_filters;
     private string $order_by;
