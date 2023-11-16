@@ -75,13 +75,16 @@ class Erp
         $response = curl_exec($ch);
         if ($response === false) {
             if (curl_errno($ch) !== 0) {
-                $response = ["error" => curl_error($ch)];
+                $output = ["error" => curl_error($ch)];
             }
         } else {
-            $response = json_decode($response, true);
+            $output = json_decode($response, true);
+        }
+        if ($output === null) {
+            $output = ["error" => "JSON parse error", "response" => $response];
         }
         curl_close($ch);
-        return $response;
+        return $output;
     }
 
     public function add_filter(array $filter)
