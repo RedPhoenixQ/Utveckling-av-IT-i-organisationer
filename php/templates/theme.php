@@ -1,4 +1,5 @@
 <?php require_once __DIR__ . "/../scripts/globals.php" ?>
+<?php require_once __DIR__ . "/../scripts/session.php" ?>
 
 <button class="btn" type="button" onclick="document.getElementById('theme-dialog')?.showModal()">
     <span class="position-relative">
@@ -20,7 +21,7 @@
                 <span class="visually-hidden">Close</span>
             </button>
         </header>
-        <form action="<?= "$base_url/api/theme.php" ?>" method="post" hx-trigger="change changed" hx-boost="false">
+        <form class="p-2" action="<?= "$base_url/api/theme.php" ?>" method="post" hx-trigger="change changed" hx-boost="false">
             <input type="hidden" name="redirect" value="<?= $_SERVER["REQUEST_URI"] ?>">
             <label class="form-label" for="theme-select">
                 Tema
@@ -39,9 +40,10 @@
                     "8" => "theme8.css",
                 ];
                 foreach ($themes as $name => $path) {
-                    echo "<option value='$path'>$name</option>";
+                    $selected = $_SESSION[Session::THEME] == $path ? "selected" : "" ;
+                    echo "<option value='$path' $selected>$name</option>";
                 } ?>
             </select>
-            <button class="btn btn-primary">Byt tema</button>
+            <button class="btn btn-primary my-2">Byt tema</button>
         </form>
 </dialog>
