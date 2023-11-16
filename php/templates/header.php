@@ -16,8 +16,8 @@ $theme = $_SESSION[Session::THEME] ?? "output.css";
 </head>
 <body class="d-flex flex-column" style="min-height: 100dvh; min-height: 100vh;" hx-boost="true">
     <header class="sticky-top bg-dark-subtle">
-        <nav class="navbar navbar-expand-lg navbar-light mx-4">
-            <a class="navbar-brand" href="<?= $base_url ?>">Mölndals Vårdcentral</a>
+        <nav class="navbar navbar-expand-lg navbar-dark mx-4">
+            <a class="navbar-brand text-body" href="<?= $base_url ?>">Mölndals Vårdcentral</a>
             <button class="navbar-toggler" type="button" 
             data-bs-toggle="collapse" 
             data-bs-target="#headerNavbar"

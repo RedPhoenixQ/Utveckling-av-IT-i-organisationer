@@ -23,9 +23,9 @@ $unseen_amount = Erp::method(Method::UNSEEN_NOTIFICATIONS, ["patient" => $_SESSI
         <span class="visually-hidden">Notifikationer</span>
     </span>
 </button>
-<dialog class="border-0 rounded-4 px-4 py-0 text-bg-dark text-start position-relative" id="notification-dialog">
-    <section>
-        <header class="d-flex align-items-center mb-2 pt-2 sticky-top bg-dark">
+<dialog class="border-0 rounded-4 px-4 py-0 text-start position-relative" id="notification-dialog">
+    <section style="background-color: inherit;">
+        <header class="d-flex align-items-center mb-2 pt-2 sticky-top" style="background-color: inherit;">
             <span class="fs-4 fw-bold">Notifikationer</span>
             <button class="btn ms-auto" onclick="document.getElementById('notification-dialog')?.close()" title="Close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" aria-hidden="true">
@@ -71,7 +71,7 @@ $unseen_amount = Erp::method(Method::UNSEEN_NOTIFICATIONS, ["patient" => $_SESSI
                 </li>
             <?php endforeach ?>
         </ul>
-        <footer class="mt-2 py-2 text-center sticky-bottom bg-dark">
+        <footer class="mt-2 py-2 text-center sticky-bottom" style="background-color: inherit;">
             <a href="<?= "$base_url/minasidor/notification/" ?>">Alla notifikationer</a>
         </footer>
     </section>
