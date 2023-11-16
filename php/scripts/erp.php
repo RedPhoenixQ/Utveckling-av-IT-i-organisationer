@@ -33,10 +33,7 @@ class Erp
 
     private function generate_url()
     {
-        $url = self::RESOURCE_URL . rawurlencode($this->doctype);
-        if (!empty($this->name)) {
-            $url .= "/" . rawurlencode($this->name);
-        }
+        $url = $this->resource_url($this->doctype, $this->name);
         $query = [];
         foreach (["fields", "filters", "or_filters", "order_by", "limit_page_length", "limit_start"] as $member) {
             if (!empty($this->{$member})) {
@@ -49,6 +46,14 @@ class Erp
         }
         if (!empty($query)) {
             $url .= "?" . http_build_query($query);
+        }
+        return $url;
+    }
+
+    private static function resource_url(string $doctype, ?string $name = null) {
+        $url = self::RESOURCE_URL . rawurlencode($doctype);
+        if ($name !== null) {
+            $url .= "/". rawurlencode($name);
         }
         return $url;
     }
@@ -109,13 +114,13 @@ class Erp
 
     public static function read(string $doctype, string $name): ?array
     {
-        $ch = self::start_json_req(self::RESOURCE_URL . "$doctype/$name");
+        $ch = self::start_json_req(self::resource_url($doctype, $name));
         return self::finish_json_req($ch);
     }
 
     public static function create(string $doctype, array $data): ?array
     {
-        $ch = self::start_json_req(self::RESOURCE_URL . $doctype);
+        $ch = self::start_json_req(self::resource_url($doctype));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         return self::finish_json_req($ch);
@@ -123,7 +128,7 @@ class Erp
     
     public static function update(string $doctype, string $name, array $data): ?array
     {
-        $ch = self::start_json_req(self::RESOURCE_URL . $doctype);
+        $ch = self::start_json_req(self::resource_url($doctype, $name));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         return self::finish_json_req($ch);
@@ -132,7 +137,7 @@ class Erp
 
     public static function delete(string $doctype, string $name): ?array 
     {
-        $ch = self::start_json_req(self::RESOURCE_URL . $doctype);
+        $ch = self::start_json_req(self::resource_url($doctype, $name));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST,"DELETE");
         return self::finish_json_req($ch);
     }
