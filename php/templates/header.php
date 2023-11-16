@@ -15,7 +15,7 @@ $theme = $_SESSION[Session::THEME] ?? "output.css";
     <title><?= $title ?? "Hem" ?></title>
 </head>
 <body class="d-flex flex-column" style="min-height: 100dvh; min-height: 100vh;" hx-boost="true">
-    <header class="sticky-top bg-dark-subtle mb-4">
+    <header class="sticky-top bg-dark-subtle">
         <nav class="navbar navbar-expand-lg navbar-light mx-4">
             <a class="navbar-brand" href="<?= $base_url ?>">Mölndals Vårdcentral</a>
             <button class="navbar-toggler" type="button" 
@@ -70,4 +70,4 @@ $theme = $_SESSION[Session::THEME] ?? "output.css";
             </div>
         </nav>
     </header>
-    <main class="container flex-grow-1">
+    <main class="container flex-grow-1 my-4">

@@ -1,7 +1,7 @@
 <? require_once __DIR__ . "/../scripts/globals.php" ?>
 
     </main>
-    <footer class="d-flex flex-wrap mt-auto py-2 px-4 bg-dark-subtle">
+    <footer class="d-flex flex-wrap py-2 px-4 bg-dark-subtle">
         <nav class="flex-fill">
             <span>Testing</span>
             <ul class="nav flex-column">
