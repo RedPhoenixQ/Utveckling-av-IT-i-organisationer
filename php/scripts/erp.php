@@ -152,6 +152,7 @@ class Doc {
     public const CLINICAL_PROCEDURE = "Clinical Procedure";
     public const PATIENT_NOTIFICATOIN = "Gr3 Notification";
     public const PATIENT_MEDICAL_RECORD= "Patient Medical Record";
+    public const VITAL_SIGNS = "Vital Signs";
 }
 
 class Method {
