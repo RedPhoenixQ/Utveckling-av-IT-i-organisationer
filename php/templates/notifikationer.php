@@ -1,11 +1,16 @@
 <?php
 require_once __DIR__ ."/../scripts/erp.php";
 require_once __DIR__ ."/../scripts/session.php";
+
+const NOTIF_AMOUNT = "notification_load_amount";
+const NOTIF_PAGE_AMOUNT = 5;
+$notification_load_amount = intval($_GET[NOTIF_AMOUNT] ?? NOTIF_PAGE_AMOUNT);
+
 $erp_notification = new Erp(Doc::PATIENT_NOTIFICATOIN);
 $erp_notification->fields = ["name", "title", "description", "related_type", "related_name", "seen", "creation"];
 $erp_notification->add_filter([Doc::PATIENT_NOTIFICATOIN, "patient", "=", $_SESSION[Session::NAME]]);
 $erp_notification->order_by("creation", Erp::ORDER_DESC);
-$erp_notification->limit_page_length = 5;
+$erp_notification->limit_page_length = $notification_load_amount;
 // Could not return "data" if there was an error
 $notifications = $erp_notification->list()["data"];
 // Could return "error" instead of "unseen"
@@ -24,7 +29,7 @@ $unseen_amount = Erp::method(Method::UNSEEN_NOTIFICATIONS, ["patient" => $_SESSI
     </span>
 </button>
 <dialog class="border-0 rounded-4 px-4 py-0 text-start position-relative" id="notification-dialog">
-    <section style="background-color: inherit;">
+    <section id="notification-dialog-content" style="background-color: inherit;">
         <header class="d-flex align-items-center mb-2 pt-2 sticky-top" style="background-color: inherit;">
             <span class="fs-4 fw-bold">Notifikationer</span>
             <button class="btn ms-auto" onclick="document.getElementById('notification-dialog')?.close()" title="Close">
@@ -72,7 +77,11 @@ $unseen_amount = Erp::method(Method::UNSEEN_NOTIFICATIONS, ["patient" => $_SESSI
             <?php endforeach ?>
         </ul>
         <footer class="mt-2 py-2 text-center sticky-bottom" style="background-color: inherit;">
-            <a href="<?= "$base_url/minasidor/notification/" ?>">Alla notifikationer</a>
+            <?php 
+            $url_path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+            $_GET[NOTIF_AMOUNT] = $notification_load_amount + NOTIF_PAGE_AMOUNT;
+            ?>
+            <a hx-target="#notification-dialog-content" hx-select="#notification-dialog-content" href="<?= "$url_path?" . http_build_query($_GET)  ?>">Hämta fler notifikationer</a>
         </footer>
     </section>
 </dialog>
