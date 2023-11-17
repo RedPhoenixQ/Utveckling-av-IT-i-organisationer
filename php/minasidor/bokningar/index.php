@@ -14,7 +14,7 @@ $erp_appointment->add_filter([Doc::PATEINT_APPOINTMENT, "patient", "=", $_SESSIO
 $erp_appointment->add_filter([Doc::PATEINT_APPOINTMENT, "status", "!=", "CLOSED"]);
 $erp_appointment->order_by("appointment_datetime", Erp::ORDER_ASC);
 
-$records = $erp_appointment->list()["data"];
+$appointments = $erp_appointment->list()["data"];
 ?>
 
 <div class="table-responsive">
@@ -31,29 +31,15 @@ $records = $erp_appointment->list()["data"];
             <th></th>
         </thead>
         <tbody>
-            <?php foreach ($records as $record) { ?>
+            <?php foreach ($appointments as $record): ?>
                 <tr class="position-relative">
-                    <td>
-                        <?= $record["name"] ?>
-                    </td>
-                    <td>
-                        <?= $record["appointment_type"] ?>
-                    </td>
-                    <td>
-                        <?= $record["appointment_date"] ?>
-                    </td>
-                    <td>
-                        <?= $record["appointment_time"] ?>
-                    </td>
-                    <td>
-                        <?= $record["duration"] ?>
-                    </td>
-                    <td>
-                        <?= $record["department"] ?>
-                    </td>
-                    <td>
-                        <?= $record["practitioner_name"] ?>
-                    </td>
+                    <td><?= $record["name"] ?></td>
+                    <td><?= $record["appointment_type"] ?></td>
+                    <td><?= $record["appointment_date"] ?></td>
+                    <td><?= $record["appointment_time"] ?></td>
+                    <td><?= $record["duration"] ?></td>
+                    <td><?= $record["department"] ?></td>
+                    <td><?= $record["practitioner_name"] ?></td>
                     <td>
                         <form action="" method="post">
                             <button class="btn btn-secondary">Omboka</button>
@@ -65,7 +51,7 @@ $records = $erp_appointment->list()["data"];
                         </form>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
