@@ -9,17 +9,16 @@ $breadcumbs_len = count($breadcumbs);
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb text-capitalize">
-        <?php foreach ($breadcumbs as $i => $link):
-        $BREADCRUMBS_PATH .= "$link/";
-        if ($i == $breadcumbs_len - 1): ?>
-            <li class="breadcrumb-item active" aria-current="page">
-                <?= $link ?>
-            </li>
-        <?php else: ?>
-            <li class="breadcrumb-item" >
-                <a href="<?= $BREADCRUMBS_PATH ?>"><?= $link ?></a>
-            </li>
-        <?php endif; ?>
-        <?php endforeach; ?>
+        <?php 
+        foreach ($breadcumbs as $i => $link) {
+            $BREADCRUMBS_PATH .= "$link/";
+            $displayname = urldecode($link);
+            if ($i == $breadcumbs_len - 1) {
+                echo "<li class='breadcrumb-item active' aria-current='page'>$displayname</li";
+            } else {
+                echo "<li class='breadcrumb-item'><a href='$BREADCRUMBS_PATH'>$displayname</a></li>";
+            }
+        } 
+        ?>
     </ol>
 </nav>
