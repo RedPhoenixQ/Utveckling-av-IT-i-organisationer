@@ -153,6 +153,7 @@ class Doc {
     public const PATIENT_NOTIFICATOIN = "Gr3 Notification";
     public const PATIENT_MEDICAL_RECORD= "Patient Medical Record";
     public const VITAL_SIGNS = "Vital Signs";
+    public const THERAPY_SESSION = "Therapy Session";
 }
 
 class Method {
