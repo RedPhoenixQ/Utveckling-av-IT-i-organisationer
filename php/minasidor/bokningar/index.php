@@ -20,6 +20,7 @@ $records = $erp_appointment->list()["data"];
 <div class="table-responsive">
     <table class="table align-middle">
         <thead>
+            <th>ID</th>
             <th>Vårdtyp</th>
             <th>Datum</th>
             <th>Tid</th>
@@ -32,6 +33,9 @@ $records = $erp_appointment->list()["data"];
         <tbody>
             <?php foreach ($records as $record) { ?>
                 <tr class="position-relative">
+                    <td>
+                        <?= $record["name"] ?>
+                    </td>
                     <td>
                         <?= $record["appointment_type"] ?>
                     </td>
