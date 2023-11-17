@@ -6,7 +6,7 @@ if (empty(array_diff_key(["category", "reason", "period", "revisit", "videocall"
 }
 ?>
 
-<?php $title = "Sök vård"; require_once "../../templates/header.php" ?>
+<?php $title = "Sök vård"; require_once "../header.php" ?>
 
 <h1>Sök vård</h1>
 <p>Fyll i formuläret nedan för att skicak en vårdförfrågan. När er vårdförfrågan har hanterats skickas en notis till er.</p>
@@ -107,4 +107,4 @@ if (empty(array_diff_key(["category", "reason", "period", "revisit", "videocall"
     <button class="btn btn-primary mx-auto">Skicka förfrågan</button>
 </form>
 
-<?php require_once "../../templates/footer.php" ?>
+<?php require_once "../footer.php" ?>
