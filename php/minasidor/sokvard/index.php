@@ -1,8 +1,36 @@
 <?php require_once "../../scripts/auth/verify_logged_in.php" ?>
 
 <?php
-if (empty(array_diff_key(["category", "reason", "period", "revisit", "videocall", "timepreference"], $_POST))) {
-    // Handle submit
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once "../../scripts/globals.php";
+    require_once "../../scripts/erp.php";
+    require_once "../../scripts/session.php";
+
+    // Check that all needed keys are present
+    $expexted_keys = array_flip(["salt", "category", "reason", "period", "timepreference"]);
+    $data = array_intersect_key($_POST, $expexted_keys);
+    if (count($data) == count($expexted_keys) && empty($_POST["category"])) {
+        // Handle checkboxes (they are not sent to server if unchecked)
+        $revisit = isset($_POST["revisit"]);
+        $videocall = isset($_POST["videocall"]);
+
+        $response = Erp::create(Doc::APPOINTMENT_REQUEST, array_merge($data, [
+            "patient" => $_SESSION[Session::NAME],
+            "revisit" => $revisit,
+            "videocall" => $videocall,
+        ]));
+        
+        // Verify that creation was successfull
+        if ($response !== null && isset($response["data"])) {
+            // Success, redirect to view of appointments
+            header("Location: $base_url/minasidor/bokningar/");
+            die();
+        } else {
+            $submit_error = "Ett fel uppstod, kunde inte skicka vårdförfrågan";
+        }
+    } else {
+        $submit_error = "Ett fel uppstod, alla nödvändiga fält var inte ifyllda";
+    }
 }
 ?>
 
@@ -10,13 +38,17 @@ if (empty(array_diff_key(["category", "reason", "period", "revisit", "videocall"
 
 <h1>Sök vård</h1>
 <p>Fyll i formuläret nedan för att skicak en vårdförfrågan. När er vårdförfrågan har hanterats skickas en notis till er.</p>
+<?php if (isset($submit_error)) {
+    echo "<p class='alert alert-danger'>$submit_error</p>";
+} ?>
 <form action="" method="post">
+    <input type="hidden" name="salt" value="<?= uniqid() ?>">
     <div class="my-2">
         <label class="form-label" for="category">
             Vad angår besöket?
         </label>
         <select class="form-select" name="category" id="category" required>
-            <option selected>Välj en kategori</option>
+            <option value="" disabled selected>Välj en kategori</option>
             <?php 
             $categories = [
                 "Vårdkategori" => [
