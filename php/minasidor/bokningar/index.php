@@ -78,7 +78,7 @@ $pending_requests = $erp_appointment_request->list()["data"];
                 <tr class="position-relative">
                     <td><?= $record["name"] ?></td>
                     <td><?= $record["appointment_type"] ?></td>
-                    <td><?= $record["appointment_date"] ?></td>
+                    <td class="test-nowrap"><?= $record["appointment_date"] ?></td>
                     <td><?= $record["appointment_time"] ?></td>
                     <td><?= $record["duration"] ?></td>
                     <td><?= $record["department"] ?></td>
