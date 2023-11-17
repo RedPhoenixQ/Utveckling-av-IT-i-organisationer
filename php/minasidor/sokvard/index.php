@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p class='alert alert-danger'>$submit_error</p>";
 } ?>
 <form action="" method="post">
-    <input type="hidden" name="salt" value="<?= uniqid() ?>">
+    <input type="hidden" name="salt" value="<?= $_POST["salt"] ?? uniqid() ?>">
     <div class="my-2">
         <label class="form-label" for="category">
             Vad angår besöket?
