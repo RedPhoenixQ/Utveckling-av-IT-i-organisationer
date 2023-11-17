@@ -7,17 +7,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "../../scripts/session.php";
 
     // Check that all needed keys are present
-    $expexted_keys = array_flip(["salt", "category", "reason", "period", "timepreference"]);
+    $expexted_keys = array_flip(["salt", "category", "reason", "period", "preferred_time"]);
     $data = array_intersect_key($_POST, $expexted_keys);
     if (count($data) == count($expexted_keys) && !empty($_POST["category"])) {
         // Handle checkboxes (they are not sent to server if unchecked)
-        $revisit = isset($_POST["revisit"]);
-        $videocall = isset($_POST["videocall"]);
+        $is_revisit = isset($_POST["is_revisit"]);
+        $wants_videocall = isset($_POST["wants_videocall"]);
 
         $response = Erp::create(Doc::APPOINTMENT_REQUEST, array_merge($data, [
             "patient" => $_SESSION[Session::NAME],
-            "revisit" => $revisit,
-            "videocall" => $videocall,
+            "is_revisit" => $is_revisit,
+            "wants_videocall" => $wants_videocall,
         ]));
         
         // Verify that creation was successfull
@@ -114,22 +114,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <fieldset class="my-4">
         <legend>Övrigt</legend>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="revisit" id="revisit">
-            <label class="form-check-label" for="revisit">
+            <input class="form-check-input" type="checkbox" name="is_revisit" id="is_revisit">
+            <label class="form-check-label" for="is_revisit">
                 Är detta ett återbesök?
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="videocall" id="videocall">
-            <label class="form-check-label" for="videocall">
+            <input class="form-check-input" type="checkbox" name="wants_videocall" id="wants_videocall">
+            <label class="form-check-label" for="wants_videocall">
                 Skulle ni vilja bemötas digital via videosamtal?
             </label>
         </div>
         <div class="my-2">
-            <label class="form-label" for="timepreference">
+            <label class="form-label" for="preferred_time">
                 När föredrar ni att bli bokade?
             </label>
-            <select class="form-select" name="timepreference" id="timepreference">
+            <select class="form-select" name="preferred_time" id="preferred_time">
                 <option value="" selected>Välj tid här...</option>
                 <option value="formiddag">Förmiddag</option>
                 <option value="eftermiddag">Eftermiddag</option>
