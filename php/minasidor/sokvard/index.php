@@ -9,7 +9,7 @@ if (empty(array_diff_key(["category", "reason", "period", "revisit", "videocall"
 <?php $title = "Sök vård"; require_once "../../templates/header.php" ?>
 
 <h1>Sök vård</h1>
-<p>Du kommer få ett svar med er bokade tid på TODO(HUR KONTAKTAR VI PATIENT)</p>
+<p>Fyll i formuläret nedan för att skicak en vårdförfrågan. När er vårdförfrågan har hanterats skickas en notis till er.</p>
 <form action="" method="post">
     <div class="my-2">
         <label class="form-label" for="category">
