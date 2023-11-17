@@ -1,14 +1,21 @@
 <?php require_once "../../scripts/auth/verify_logged_in.php" ?>
+
+<?php
+if (empty(array_diff_key(["category", "reason", "period", "revisit", "videocall", "timepreference"], $_POST))) {
+    // Handle submit
+}
+?>
+
 <?php $title = "Sök vård"; require_once "../../templates/header.php" ?>
 
 <h1>Sök vård</h1>
 <p>Du kommer få ett svar med er bokade tid på TODO(HUR KONTAKTAR VI PATIENT)</p>
-<form action="hantera_bokning.php" method="post">
+<form action="" method="post">
     <div class="my-2">
-        <label class="form-label" for="kategori">
+        <label class="form-label" for="category">
             Vad angår besöket?
         </label>
-        <select class="form-select" name="kategori" id="kategori" required>
+        <select class="form-select" name="category" id="category" required>
             <option selected>Välj en kategori</option>
             <?php 
             $categories = [
@@ -39,24 +46,58 @@
         <select>
     </div>
     <div class="my-2">
-    <label class="form-label" for="anledning">
-        Beskriv anledningen för besöket och eventuell symtom.
-    </label>
-    <textarea class="form-control" rows="3" name="anledning" id="anledning"></textarea>
+        <label class="form-label" for="reason">
+            Beskriv anledningen för besöket och eventuell symtom.
+        </label>
+        <textarea class="form-control" rows="5" name="reason" id="reason"></textarea>
     </div>
+    <fieldset class="my-4">
+        <legend>Om relevant</legend>
+        <label class="form-label" for="period">
+            Hur länge har ni upplevt besväret?
+        </label>
+        <select class="form-select" name="period" id="period">
+            <option value="" selected></option>
+            <?php
+            $peridoer = [
+                "Mindre än en dag",
+                "Ca 24 timmar",
+                "Ca 48 timmar",
+                "Ca 3-6 dagar",
+                "Ca 1 vecka",
+                "Ca 2 veckor",
+                "Ca 1 månad",
+                "Ca 2 månader",
+                "Ca 3 måndaer",
+                "Ca 6 månader",
+                "Ca 1 år",
+                "Längre än ett år",
+            ];
+            foreach ($peridoer as $period) {
+                echo "<option value='$period'>$period</option>";
+            } 
+            ?>
+        </select>
+    </fieldset>
     <fieldset class="my-4">
         <legend>Övrigt</legend>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="off" name="videosamtal" id="videosamtal">
-            <label class="form-check-label" for="videosamtal">
+            <input class="form-check-input" type="checkbox" name="revisit" id="revisit">
+            <label class="form-check-label" for="revisit">
+                Är detta ett återbesök?
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="videocall" id="videocall">
+            <label class="form-check-label" for="videocall">
                 Skulle ni vilja bemötas digital via videosamtal?
             </label>
         </div>
         <div class="my-2">
-            <label class="form-label" for="tidspreferens">
+            <label class="form-label" for="timepreference">
                 När föredrar ni att bli bokade?
             </label>
-            <select class="form-select" name="tidspreferens" id="tidspreferens">
+            <select class="form-select" name="timepreference" id="timepreference">
                 <option value="" selected>Välj tid här...</option>
                 <option value="formiddag">Förmiddag</option>
                 <option value="eftermiddag">Eftermiddag</option>
