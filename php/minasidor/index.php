@@ -4,7 +4,7 @@ require_once "../scripts/erp.php";
 require_once "../scripts/session.php";
 ?>
 <?php $title = "Mina Sidor";
-require_once "../templates/header.php" ?>
+require_once "header.php" ?>
 
 <h2>Mina sidor</h2>
 <nav class="nav nav-pills flex-column flex-sm-row flex-wrap">
@@ -49,4 +49,4 @@ $patient = Erp::read(Doc::PATIENT, $_SESSION[Session::NAME])["data"];
     </form>
 </details>
 
-<?php require_once "../templates/footer.php" ?>
+<?php require_once "footer.php" ?>

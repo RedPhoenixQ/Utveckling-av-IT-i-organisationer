@@ -2,7 +2,7 @@
 <?php require_once "../../scripts/erp.php" ?>
 <?php require_once "../../scripts/session.php" ?>
 <?php $title = "Journal";
-require_once "../../templates/header.php" ?>
+require_once "../header.php" ?>
 
 <?php
 $erp = new Erp(Doc::PATIENT_MEDICAL_RECORD);
@@ -46,4 +46,4 @@ $records = $erp->list()["data"];
     </tbody>
 </table>
 
-<?php require_once "../../templates/footer.php" ?>
+<?php require_once "../footer.php" ?>

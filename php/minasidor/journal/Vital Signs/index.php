@@ -2,7 +2,7 @@
 <?php require_once "../../../scripts/erp.php" ?>
 <?php require_once "../../../scripts/session.php" ?>
 <?php $title = "Vital Signs";
-require_once "../../../templates/header.php" ?>
+require_once "../../header.php" ?>
 
 <h1>Vital Signs</h1>
 <?php
@@ -33,4 +33,4 @@ $vital_signs = Erp::read(Doc::VITAL_SIGNS, $_GET["name"])["data"];
     } ?>
 </dl>
 
-<?php require_once "../../../templates/footer.php" ?>
+<?php require_once "../../footer.php" ?>

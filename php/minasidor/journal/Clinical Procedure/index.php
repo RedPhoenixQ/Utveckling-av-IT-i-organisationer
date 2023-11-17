@@ -2,7 +2,7 @@
 <?php require_once "../../../scripts/erp.php" ?>
 <?php require_once "../../../scripts/session.php" ?>
 <?php $title = "Clinical Procedure";
-require_once "../../../templates/header.php" ?>
+require_once "../../header.php" ?>
 
     <h1>Clinical Procedure</h1>
     <?php
@@ -33,4 +33,4 @@ require_once "../../../templates/header.php" ?>
     } ?>
 </dl>
 
-<?php require_once "../../../templates/footer.php" ?>
+<?php require_once "../../footer.php" ?>
