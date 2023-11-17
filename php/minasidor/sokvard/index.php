@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check that all needed keys are present
     $expexted_keys = array_flip(["salt", "category", "reason", "period", "timepreference"]);
     $data = array_intersect_key($_POST, $expexted_keys);
-    if (count($data) == count($expexted_keys) && empty($_POST["category"])) {
+    if (count($data) == count($expexted_keys) && !empty($_POST["category"])) {
         // Handle checkboxes (they are not sent to server if unchecked)
         $revisit = isset($_POST["revisit"]);
         $videocall = isset($_POST["videocall"]);
