@@ -7,7 +7,7 @@ require_once "../header.php" ?>
 <?php
 $erp = new Erp(Doc::PATIENT_MEDICAL_RECORD);
 $erp->fields = ["status", "communication_date", "reference_doctype", "reference_name", "subject", "attach"];
-$erp->order_by("communication_date", Erp::ORDER_ASC);
+$erp->order_by("communication_date", Erp::ORDER_DESC);
 $erp->add_filter([Doc::PATIENT_MEDICAL_RECORD, "patient", "=", $_SESSION[Session::NAME]]);
 $records = $erp->list()["data"];
 ?>
