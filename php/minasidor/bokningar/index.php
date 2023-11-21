@@ -3,10 +3,10 @@
 <?php require_once "../../scripts/session.php" ?>
 
 <?php
-$erp_appointment = new Erp(Doc::PATEINT_APPOINTMENT);
+$erp_appointment = new Erp(Doc::PATIENT_APPOINTMENT);
 $erp_appointment->fields = ["name", "practitioner_name", "duration", "department", "appointment_time", "appointment_date", "appointment_type"];
-$erp_appointment->add_filter([Doc::PATEINT_APPOINTMENT, "patient", "=", $_SESSION[Session::NAME]]);
-$erp_appointment->add_filter([Doc::PATEINT_APPOINTMENT, "status", "!=", "CLOSED"]);
+$erp_appointment->add_filter([Doc::PATIENT_APPOINTMENT, "patient", "=", $_SESSION[Session::NAME]]);
+$erp_appointment->add_filter([Doc::PATIENT_APPOINTMENT, "status", "!=", "CLOSED"]);
 $erp_appointment->order_by("appointment_datetime", Erp::ORDER_ASC);
 
 $appointments = $erp_appointment->list()["data"];
