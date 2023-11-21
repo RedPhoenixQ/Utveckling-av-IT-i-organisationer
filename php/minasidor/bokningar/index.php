@@ -14,7 +14,7 @@ $appointments = $erp_appointment->list()["data"];
 $erp_appointment_request = new Erp(Doc::APPOINTMENT_REQUEST);
 $erp_appointment_request->fields = ["creation", "category", "reason", "is_revisit", "wants_videocall"];
 $erp_appointment_request->add_filter([Doc::APPOINTMENT_REQUEST, "state", "=", "Pending"]);
-$erp_appointment_request->order_by("creation", Erp::ORDER_ASC);
+$erp_appointment_request->order_by("creation", Erp::ORDER_DESC);
 
 $pending_requests = $erp_appointment_request->list()["data"];
 ?>
