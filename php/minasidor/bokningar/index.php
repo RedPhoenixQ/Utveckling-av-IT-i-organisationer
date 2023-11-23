@@ -3,10 +3,10 @@
 <?php require_once "../../scripts/session.php" ?>
 
 <?php
-$erp_appointment = new Erp(Doc::PATEINT_APPOINTMENT);
+$erp_appointment = new Erp(Doc::PATIENT_APPOINTMENT);
 $erp_appointment->fields = ["name", "practitioner_name", "duration", "department", "appointment_time", "appointment_date", "appointment_type"];
-$erp_appointment->add_filter([Doc::PATEINT_APPOINTMENT, "patient", "=", $_SESSION[Session::NAME]]);
-$erp_appointment->add_filter([Doc::PATEINT_APPOINTMENT, "status", "!=", "CLOSED"]);
+$erp_appointment->add_filter([Doc::PATIENT_APPOINTMENT, "patient", "=", $_SESSION[Session::NAME]]);
+$erp_appointment->add_filter([Doc::PATIENT_APPOINTMENT, "status", "!=", "CLOSED"]);
 $erp_appointment->order_by("appointment_datetime", Erp::ORDER_ASC);
 
 $appointments = $erp_appointment->list()["data"];
@@ -14,7 +14,7 @@ $appointments = $erp_appointment->list()["data"];
 $erp_appointment_request = new Erp(Doc::APPOINTMENT_REQUEST);
 $erp_appointment_request->fields = ["creation", "category", "reason", "is_revisit", "wants_videocall"];
 $erp_appointment_request->add_filter([Doc::APPOINTMENT_REQUEST, "state", "=", "Pending"]);
-$erp_appointment_request->order_by("creation", Erp::ORDER_ASC);
+$erp_appointment_request->order_by("creation", Erp::ORDER_DESC);
 
 $pending_requests = $erp_appointment_request->list()["data"];
 ?>
