@@ -48,6 +48,8 @@ $unseen_amount = Erp::method(Method::UNSEEN_NOTIFICATIONS, ["patient" => $_SESSI
                     hx-vals=\'' . json_encode(["name" => $notification["name"]]) . '\'
                     ><span class="visually-hidden">Oläst.</span>
                     ●</span>';
+                } else {
+                    $unread = "";
                 }
                 switch ($notification["related_type"]) {
                     case "Patient Appointment":
@@ -66,7 +68,7 @@ $unseen_amount = Erp::method(Method::UNSEEN_NOTIFICATIONS, ["patient" => $_SESSI
                         </a>
                     <?php endif ?>
                     <small>
-                        <?= $unread ?? "" ?>
+                        <?= $unread ?>
                         <span><?= $notification["related_type"] ?></span>
                         -
                         <time datetime="<?= $notification["creation"] ?>"><?= date("Y/m/d H:i", (new DateTime($notification["creation"]))->getTimestamp()) ?></time>
