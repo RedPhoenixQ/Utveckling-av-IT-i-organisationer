@@ -16,7 +16,7 @@ $breadcumbs_len = count($breadcumbs);
             if ($i == $breadcumbs_len - 1) {
                 echo "<li class='breadcrumb-item active' aria-current='page'>$displayname</li";
             } else {
-                echo "<li class='breadcrumb-item'><a href='$BREADCRUMBS_PATH'>$displayname</a></li>";
+                echo "<li class='breadcrumb-item'><a href='$BREADCRUMBS_PATH?". http_build_query($_GET) ."'>$displayname</a></li>";
             }
         } 
         ?>
