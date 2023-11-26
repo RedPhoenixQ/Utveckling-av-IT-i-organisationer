@@ -155,6 +155,7 @@ class Doc {
     public const VITAL_SIGNS = "Vital Signs";
     public const THERAPY_SESSION = "Therapy Session";
     public const APPOINTMENT_REQUEST = "Gr3 Appointment Request";
+    public const PATIENT_APPOINTMENT_EVALUATION = "Gr3 Patient Appointment Evaluation";
 }
 
 class Method {

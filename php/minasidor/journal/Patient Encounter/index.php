@@ -9,6 +9,8 @@ require_once "../../header.php" ?>
 $encounter = Erp::read(Doc::PATIENT_ENCOUNTER, $_GET["name"])["data"];
 ?>
 
+<a class="btn btn-primary" href="<?= "$base_url/minasidor/journal/Patient Encounter/Utvärdering/?" . http_build_query($_GET) ?>">Utvärdera</a>
+
 <dl>
     <?php foreach ($encounter as $col => $value) {
         echo "<dt>$col</dt>";
