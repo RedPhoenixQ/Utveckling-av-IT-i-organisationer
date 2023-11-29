@@ -30,12 +30,12 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"])) {
 }
 ?>
 
-<?php $title = "Mina Sidor"; require_once "../templates/header.php" ?>
+<?php $title = "Logga in"; require_once "../templates/header.php" ?>
 
 <h1>Logga in</h1>
 <form method="post" class="my-4">
     <div class="form-floating my-2">
-        <input class="form-control" type="text" name="ssn" id="ssn" pattern="\d{8}-?\d{4}" title="Ditt personnummer med 12 siffor, 'YYYYMMDD-XXXX'" required>
+        <input class="form-control" type="text" name="ssn" id="ssn" pattern="\d{8}-?\d{4}" title="Ditt personnummer med 12 siffor, 'YYYYMMDD-XXXX'" value="<?= $_POST["ssn"] ?? "" ?>" required>
         <label for="ssn">Personnummer (12-siffror):</label>
     </div>
     <div class="form-floating my-2">
@@ -50,7 +50,7 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"])) {
     <div class="my-4 mx-auto mw-100" style="width:fit-content">
         <button class="btn btn-primary">Logga in</button>
         <span>eller</span>
-        <a href="<?=$base_url?>/registrera">registrera dig här</a>
+        <a href="<?= "$base_url/registrera" ?>">registrera dig här</a>
     </div>
 </form>
 
