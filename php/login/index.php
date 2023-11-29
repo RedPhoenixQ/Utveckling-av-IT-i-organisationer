@@ -30,7 +30,7 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"])) {
 }
 ?>
 
-<?php $title = "Mina Sidor"; require_once "../templates/header.php" ?>
+<?php $title = "Logga in"; require_once "../templates/header.php" ?>
 
 <h1>Logga in</h1>
 <form method="post" class="my-4">
