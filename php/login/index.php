@@ -50,7 +50,7 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"])) {
     <div class="my-4 mx-auto mw-100" style="width:fit-content">
         <button class="btn btn-primary">Logga in</button>
         <span>eller</span>
-        <a href="<?=$base_url?>/registrera">registrera dig här</a>
+        <a href="<?= "$base_url/registrera" ?>">registrera dig här</a>
     </div>
 </form>
 
