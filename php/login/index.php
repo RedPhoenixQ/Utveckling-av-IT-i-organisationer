@@ -35,7 +35,7 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"])) {
 <h1>Logga in</h1>
 <form method="post" class="my-4">
     <div class="form-floating my-2">
-        <input class="form-control" type="text" name="ssn" id="ssn" pattern="\d{8}-?\d{4}" title="Ditt personnummer med 12 siffor, 'YYYYMMDD-XXXX'" required>
+        <input class="form-control" type="text" name="ssn" id="ssn" pattern="\d{8}-?\d{4}" title="Ditt personnummer med 12 siffor, 'YYYYMMDD-XXXX'" value="<?= $_POST["ssn"] ?? "" ?>" required>
         <label for="ssn">Personnummer (12-siffror):</label>
     </div>
     <div class="form-floating my-2">
