@@ -38,7 +38,7 @@ $pending_requests = $erp_appointment_request->list()["data"];
             <tbody>
                 <?php foreach ($pending_requests as $request): ?>
                     <tr>
-                        <td class="text-nowrap"><?= (new DateTime($request["creation"]))->format("y-m-d") ?></td>
+                        <td class="text-nowrap"><?= (new DateTime($request["creation"]))->format("Y-m-d") ?></td>
                         <td><?= $request["category"] ?></td>
                         <td class="w-100">
                             <?php  if (!empty($request["reason"])): ?>
