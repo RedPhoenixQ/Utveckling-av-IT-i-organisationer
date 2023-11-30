@@ -12,6 +12,7 @@ require_once "header.php" ?>
     $links = [
         "Min journal" => "journal",
         "Mina bokningar" => "bokningar",
+        "Mina recept" => "recept",
         "Sök vård" => "sokvard",
     ];
     foreach ($links as $title => $link): ?>
