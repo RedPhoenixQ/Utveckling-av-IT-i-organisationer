@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endforeach; ?>
     </div>
     <div class="mb-4">
-        <label class="form-label" for="other_comments">Är det något från de ovannämnda frågorna som du specifikt vill utveckla?</label>
+        <label class="form-label" for="other_comments">Är det något från de ovannämnda frågorna som du specifikt vill utveckla? (max 500 ord)</label>
         <textarea class="form-control" name="other_comments" id="other_comments" cols="30" rows="10" maxlength="500"></textarea>
     </div>
     <button class="btn btn-primary">Skicka</button>
