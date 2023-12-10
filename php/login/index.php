@@ -33,6 +33,7 @@ if (!empty($_POST["ssn"]) && !empty($_POST["pwd"])) {
 <?php $title = "Logga in"; require_once "../templates/header.php" ?>
 
 <h1>Logga in</h1>
+<p>Endast personer som tidigare har besökt vårdcentralen kan för nuvarande använda våra digitala tjänster. Vänligen kontakt telefonrådgivningen om ni inte tidigare har besökt oss.</p>
 <form method="post" class="my-4">
     <div class="form-floating my-2">
         <input class="form-control" type="text" name="ssn" id="ssn" pattern="\d{8}-?\d{4}" title="Ditt personnummer med 12 siffor, 'YYYYMMDD-XXXX'" value="<?= $_POST["ssn"] ?? "" ?>" required>
