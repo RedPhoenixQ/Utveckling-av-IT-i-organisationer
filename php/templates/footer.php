@@ -3,7 +3,8 @@
     </main>
     <footer class="d-flex flex-wrap py-2 px-4 bg-dark-subtle">
         <nav class="flex-fill">
-            <span>Testing</span>
+            <a class="fw-bold mb-2 text-reset" href="<?= "$base_url/omoss" ?>">Om oss</a>
+            <div class="fw-bold">Testing</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $base_url."/test/erp.php" ?>">Erp test</a>
@@ -14,7 +15,7 @@
             </ul>
         </nav>
         <div class="flex-fill">
-            <span>Kontakta oss</span>
+            <div class="fw-bold">Kontakta oss</div>
             <address class="ps-4">
                 Mölndals vårdcentral<br/>
                 Göteborgsvägen XX<br/>
@@ -24,7 +25,7 @@
             </address>
         </div>
         <div class="flex-fill">
-            <span>Öppettider</span>
+            <div class="fw-bold">Öppettider</div>
             <ul class="list-unstyled ps-4">
                 <li>Måndag: <time datetime="08:00">8</time>-<time datetime="20:00">20</li>
                 <li>Tisdag: <time datetime="08:00">8</time>-<time datetime="20:00">20</li>
