@@ -8,8 +8,11 @@ require_once "../../header.php" ?>
 <?php
 $encounter = Erp::read(Doc::PATIENT_ENCOUNTER, $_GET["name"])["data"];
 ?>
-
-<a class="btn btn-primary" href="<?= "$base_url/minasidor/journal/Patient Encounter/Utvärdering/?" . http_build_query($_GET) ?>">Utvärdera</a>
+<?php if (isset(Erp::read(Doc::PATIENT_APPOINTMENT_EVALUATION, $_SESSION[Session::NAME]." - ".$_GET["name"])["data"])): ?>
+    <button disabled class="btn btn-secondary">Detta encounter har redan utvärderats</button>
+<?php else: ?>
+    <a class="btn btn-primary" href="<?= "$base_url/minasidor/journal/Patient Encounter/Utvärdering/?" . http_build_query($_GET) ?>">Utvärdera</a>
+<?php endif; ?>
 
 <dl>
     <?php foreach ($encounter as $col => $value) {
