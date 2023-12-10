@@ -3,10 +3,25 @@
 <?php require_once "../../scripts/session.php" ?>
 
 <?php
+if (!empty($_POST["appointment_id"]) && (isset($_POST["cancel"]) || isset($_POST["reschedule"]))) {
+    $res = Erp::method(Method::PATIENT_APPOINTMENT_UPDATE_STATUS, [
+        "appointment_id" => $_POST["appointment_id"],
+        "status" => "Cancelled",
+    ]);
+    if (isset($_POST["reschedule"])) {
+        Erp::create(Doc::APPOINTMENT_REQUEST, [
+            "category" => "Reschedule",
+            "patient" => $_SESSION[Session::NAME],
+            "previous_appointment" => $_POST["appointment_id"],
+        ]);
+    }
+}
+?>
+
+<?php
 $erp_appointment = new Erp(Doc::PATIENT_APPOINTMENT);
-$erp_appointment->fields = ["name", "practitioner_name", "duration", "department", "appointment_time", "appointment_date", "appointment_type"];
+$erp_appointment->fields = ["name", "practitioner_name", "duration", "department", "appointment_time", "appointment_date", "appointment_type", "status"];
 $erp_appointment->add_filter([Doc::PATIENT_APPOINTMENT, "patient", "=", $_SESSION[Session::NAME]]);
-$erp_appointment->add_filter([Doc::PATIENT_APPOINTMENT, "status", "!=", "CLOSED"]);
 $erp_appointment->order_by("appointment_datetime", Erp::ORDER_ASC);
 
 $appointments = $erp_appointment->list()["data"];
@@ -70,12 +85,27 @@ $pending_requests = $erp_appointment_request->list()["data"];
             <th>Duration</th>
             <th>Avdelning</th>
             <th>Läkarnamn</th>
-            <th></th>
-            <th></th>
         </thead>
         <tbody>
             <?php foreach ($appointments as $record): ?>
                 <tr class="position-relative">
+                    <td>
+                        <?php if ($record["status"] == "Scheduled"): ?>
+                            <form action="" method="post" class="d-flex flex-wrap gap-2">
+                                <input type="hidden" name="appointment_id" value="<?= $record["name"] ?>">
+                                <button type="submit" name="cancel" class="btn btn-danger btn-sm">Avboka</button>
+                                <button type="submit" name="reschedule" class="btn btn-secondary btn-sm">Omboka</button>
+                            </form>
+                        <?php else:
+                            $clr = "secondary";
+                            if ($record["status"] == "Cancelled") {
+                                $clr = "danger";
+                            }
+                        ?>
+                            <span class="btn btn-<?= $clr ?> btn-sm disabled">
+                            <?= $record["status"] ?></span>
+                        <?php endif; ?>
+                    </td>
                     <td><?= $record["name"] ?></td>
                     <td><?= $record["appointment_type"] ?></td>
                     <td class="test-nowrap"><?= $record["appointment_date"] ?></td>
@@ -83,16 +113,6 @@ $pending_requests = $erp_appointment_request->list()["data"];
                     <td><?= $record["duration"] ?></td>
                     <td><?= $record["department"] ?></td>
                     <td><?= $record["practitioner_name"] ?></td>
-                    <td>
-                        <form action="" method="post">
-                            <button class="btn btn-secondary">Omboka</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="" method="post">
-                            <button class="btn btn-danger">Avboka</button>
-                        </form>
-                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
