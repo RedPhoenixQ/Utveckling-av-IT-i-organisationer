@@ -15,7 +15,7 @@ $erp_long_term_request->add_or_filter([Doc::LONG_TERM_MEDICATION_RENEW_REQUEST, 
 $erp_long_term_request->add_or_filter([
     Doc::LONG_TERM_MEDICATION_RENEW_REQUEST,
     "creation",
-    ">",
+    ">=",
     date("Y-m-d")
 ]);
 $long_term_requests_response = $erp_long_term_request->list()["data"];
