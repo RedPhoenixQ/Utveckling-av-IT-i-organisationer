@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "encounter" => $_GET["name"],
         ]));
 
-        if (is_array($new)) {
+        if (isset($new["data"])) {
             header("Location: $base_url/minasidor/journal/Patient%20Encounter/?" . http_build_query($_GET));
             die();
         }
