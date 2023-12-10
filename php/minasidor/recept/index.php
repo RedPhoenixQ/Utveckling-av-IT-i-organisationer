@@ -104,7 +104,7 @@ if (!empty($_POST["long_term_medication"])) {
     </div>
 <?php endif; ?>
 
-<h2>Tillgängliga recept</h2>
+<h2 class="mt-4">Tillgängliga recept</h2>
 <div class="table-responsive">
     <table class="table align-middle">
         <thead class="text-nowrap">
