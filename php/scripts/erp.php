@@ -156,6 +156,9 @@ class Doc {
     public const THERAPY_SESSION = "Therapy Session";
     public const APPOINTMENT_REQUEST = "Gr3 Appointment Request";
     public const PATIENT_APPOINTMENT_EVALUATION = "Gr3 Patient Appointment Evaluation";
+    public const MEDICATION_REQUEST = "Medication Request";
+    public const LONG_TERM_MEDICATION = "Gr3 Long Term Medication";
+    public const LONG_TERM_MEDICATION_RENEW_REQUEST = "Gr3 Long Term Medication Renew Request";
 }
 
 class Method {
