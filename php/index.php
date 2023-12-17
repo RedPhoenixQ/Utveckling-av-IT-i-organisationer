@@ -1,6 +1,6 @@
 <?php $title = "Hemsidan"; require_once "templates/header.php" ?>
 
-<h1>Detta är förstsidan</h1>
+<h1>Välkommen till Mölndals Vårdcentral</h1>
 
 <?php 
 $articles = [
