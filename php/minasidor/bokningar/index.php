@@ -78,6 +78,7 @@ $pending_requests = $erp_appointment_request->list()["data"];
 <div class="table-responsive">
     <table class="table align-middle">
         <thead>
+            <th></th>
             <th>ID</th>
             <th>Vårdtyp</th>
             <th>Datum</th>
