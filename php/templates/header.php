@@ -48,6 +48,7 @@ $theme = $_SESSION[Session::THEME] ?? "output.css";
                             <ul class="dropdown-menu dropstart">
                                 <li><a class="dropdown-item" href="<?= "$base_url/minasidor/journal/" ?>">Journal</a></li>
                                 <li><a class="dropdown-item" href="<?= "$base_url/minasidor/bokningar/" ?>">Bokningar</a></li>
+                                <li><a class="dropdown-item" href="<?= "$base_url/minasidor/recept/" ?>">Recept</a></li>
                                 <li class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="<?= "$base_url/minasidor/sokvard/" ?>">Sök vård</a></li>
                             </ul>
